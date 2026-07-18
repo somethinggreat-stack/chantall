@@ -1,0 +1,43 @@
+/* ===========================================================
+   PRESTIGE — Legal / policy pages
+   Inherits tokens from styles.css.
+   =========================================================== */
+
+.legal-hero{padding:150px 0 50px;position:relative;overflow:hidden;
+  background:radial-gradient(120% 80% at 50% -20%,rgba(200,16,46,.16),transparent 55%),var(--black)}
+.legal-hero .wrap{max-width:860px}
+.legal-hero .crumbs{font-size:.82rem;color:var(--muted);margin-bottom:1.1rem}
+.legal-hero .crumbs a{color:var(--gold-soft)}
+.legal-hero h1{font-size:clamp(2.2rem,5vw,3.4rem);margin:.4rem 0 .8rem}
+.legal-hero .updated{font-size:.84rem;color:var(--muted);letter-spacing:.02em}
+.legal-hero .updated b{color:var(--gold-soft);font-weight:600}
+
+.legal-body{padding:30px 0 100px}
+.legal-body .wrap{max-width:860px}
+.legal-doc{background:linear-gradient(180deg,rgba(26,20,20,.5),rgba(12,12,12,.6));
+  border:1px solid var(--line);border-radius:16px;padding:3rem 3rem 3.2rem}
+.legal-doc h2{font-family:'Sora',sans-serif;font-size:1.35rem;font-weight:700;color:var(--cream);
+  margin:2.4rem 0 .9rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.legal-doc h2:first-of-type{border-top:none;padding-top:0;margin-top:0}
+.legal-doc h3{font-family:'Sora',sans-serif;font-size:1.02rem;font-weight:600;color:var(--gold-soft);
+  margin:1.5rem 0 .5rem}
+.legal-doc p{color:var(--muted);font-weight:300;margin-bottom:1rem;font-size:.98rem;line-height:1.8}
+.legal-doc ul{list-style:none;margin:0 0 1.2rem;display:flex;flex-direction:column;gap:.6rem}
+.legal-doc ul li{position:relative;padding-left:1.5rem;color:var(--muted);font-weight:300;
+  font-size:.98rem;line-height:1.7}
+.legal-doc ul li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:7px;
+  border-radius:2px;background:var(--gold-grad)}
+.legal-doc a{color:var(--gold-soft);text-decoration:underline;text-underline-offset:2px}
+.legal-doc b,.legal-doc strong{color:var(--cream);font-weight:600}
+.legal-doc .lead{font-size:1.05rem;color:var(--cream);font-weight:300;line-height:1.8;margin-bottom:1.6rem}
+.legal-doc .callout{border-left:3px solid var(--gold);background:rgba(212,175,55,.06);
+  border-radius:0 10px 10px 0;padding:1rem 1.3rem;margin:1.4rem 0;color:var(--gold-soft);
+  font-weight:300;font-size:.95rem}
+.legal-doc .callout b{color:var(--gold-soft)}
+.legal-contact{margin-top:2rem;padding-top:1.6rem;border-top:1px solid var(--line);
+  color:var(--muted);font-weight:300;font-size:.95rem}
+
+@media(max-width:560px){
+  .legal-hero{padding:120px 0 40px}
+  .legal-doc{padding:1.8rem 1.4rem}
+}

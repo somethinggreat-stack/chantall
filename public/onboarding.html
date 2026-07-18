@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Welcome — Prestige Financial Concierge</title>
+<meta name="description" content="Complete your secure client onboarding so we can begin working on your credit." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --black:#0A0A0A; --ink:#111111; --panel:#141414; --panel-2:#1A1414;
+    --red:#C8102E; --red-glow:#E11331;
+    --gold:#D4AF37; --gold-soft:#E8CE84; --gold-deep:#A9842B;
+    --green:#4BD07F; --green-deep:#28A35A;
+    --cream:#F6F1E7; --muted:#B9B2A6;
+    --line:rgba(212,175,55,.18);
+    --gold-grad:linear-gradient(180deg,#F4E4A6 0%,#D4AF37 42%,#A9842B 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter',sans-serif;color:var(--cream);
+    background:
+      radial-gradient(900px 500px at 85% -5%, rgba(212,175,55,.10), transparent 60%),
+      radial-gradient(800px 500px at 10% 110%, rgba(200,16,46,.10), transparent 60%),
+      var(--black);
+    min-height:100vh;line-height:1.5;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{width:100%;max-width:880px;margin:0 auto;padding:0 18px}
+
+  /* ===== trust strip ===== */
+  .ob-strip{border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+  .ob-strip .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;padding:11px 18px}
+  .ob-strip span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .ob-strip span::before{content:"✦";color:var(--gold);margin-right:7px}
+
+  /* ===== header ===== */
+  .ob-head{padding:22px 0}
+  .ob-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .ob-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .ob-brand img{height:46px;width:auto;display:block}
+  .ob-brand .fallback{font-family:'Sora';font-weight:800;color:var(--cream);font-size:18px;letter-spacing:.02em}
+  .ob-brand .fallback b{color:var(--gold)}
+  .ob-lock{font-size:12px;color:var(--gold-soft);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+
+  /* ===== hero ===== */
+  .ob-hero{text-align:center;padding:18px 0 6px}
+  .ob-hero .eyebrow{display:inline-block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:6px 14px;margin-bottom:16px}
+  .ob-hero h1{font-family:'Sora';font-weight:800;font-size:clamp(26px,4.4vw,40px);line-height:1.12;letter-spacing:-.01em}
+  .ob-hero h1 .g{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .ob-hero p{color:var(--muted);font-size:15px;margin-top:12px}
+  .ob-hero .quote{font-family:'Cormorant Garamond';font-style:italic;font-size:19px;color:var(--gold-soft);margin-top:10px}
+
+  /* ===== card ===== */
+  .ob-card{
+    background:linear-gradient(180deg,rgba(26,20,20,.85),rgba(20,20,20,.9));
+    border:1px solid var(--line);border-radius:18px;
+    padding:30px 26px 34px;margin:24px 0 60px;
+    box-shadow:0 40px 120px -50px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.03);
+  }
+  .sec-label{display:flex;align-items:center;gap:10px;margin:6px 0 16px;font-family:'Sora';font-weight:700;font-size:14px;color:var(--gold-soft);letter-spacing:.04em}
+  .sec-label::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field.full{grid-column:1 / -1}
+  .field label{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--muted);text-transform:uppercase}
+  .field label .req{color:var(--red-glow)}
+  .opt{color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0}
+
+  .field input,.field select{
+    width:100%;height:50px;border-radius:11px;
+    background:rgba(255,255,255,.035);
+    border:1px solid var(--line);color:var(--cream);
+    padding:0 14px;font-family:'Inter';font-size:15px;font-weight:500;
+    transition:border-color .2s, box-shadow .2s, background .2s;
+  }
+  .field select{cursor:pointer;appearance:none;
+    background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);
+    background-position:calc(100% - 20px) 22px,calc(100% - 14px) 22px;background-size:6px 6px,6px 6px;background-repeat:no-repeat;
+    background-color:rgba(255,255,255,.035);
+  }
+  .field input::placeholder{color:#6f6a60}
+  .field select option{color:#111111;background:#ffffff;font-weight:500}
+  .field-err{display:none;text-align:right;color:#ff6b6b;font-size:12px;margin-top:3px;font-weight:500}
+  .field-err.show{display:block}
+  .field input.invalid,.field select.invalid{border-color:#e0334b;background:rgba(224,51,75,.06);box-shadow:0 0 0 4px rgba(224,51,75,.10)}
+  .field input.valid,.field select.valid{border-color:rgba(75,208,127,.5)}
+  .field input:focus,.field select:focus{
+    outline:none;border-color:var(--gold);
+    background:rgba(212,175,55,.06);
+    box-shadow:0 0 0 4px rgba(212,175,55,.10);
+  }
+  .field input[type=file]{padding:12px 14px;height:auto;font-size:13px;color:var(--muted);cursor:pointer}
+  .field input[type=file]::file-selector-button{
+    margin-right:12px;border:0;border-radius:8px;padding:9px 14px;cursor:pointer;
+    background:var(--gold-grad);color:#1a1206;font-weight:700;font-family:'Inter';font-size:13px;
+  }
+
+  /* fixed provider badge */
+  .cm-fixed{height:50px;display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:11px;
+    background:rgba(75,208,127,.08);border:1px solid rgba(75,208,127,.35);color:var(--cream);font-family:'Sora';font-weight:600}
+  .cm-fixed::before{content:"\2713";color:var(--green);font-weight:800}
+
+  /* ===== credit monitoring callout + green button ===== */
+  .cm-callout{
+    grid-column:1 / -1;margin-top:4px;
+    background:radial-gradient(120% 140% at 0% 0%, rgba(75,208,127,.12), transparent 60%), rgba(255,255,255,.02);
+    border:1px solid rgba(75,208,127,.28);border-radius:14px;padding:16px 18px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  }
+  .cm-callout .cm-txt b{font-family:'Sora';color:var(--cream);font-size:15px}
+  .cm-callout .cm-txt span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+  .btn-green{
+    display:inline-flex;align-items:center;gap:9px;white-space:nowrap;
+    background:linear-gradient(180deg,var(--green) 0%,var(--green-deep) 100%);color:#052613;border:0;cursor:pointer;
+    font-family:'Sora';font-weight:700;font-size:14px;letter-spacing:.01em;
+    padding:14px 22px;border-radius:11px;text-decoration:none;
+    box-shadow:0 10px 40px -12px rgba(40,163,90,.6);transition:transform .2s, box-shadow .2s;
+  }
+  .btn-green:hover{transform:translateY(-2px);box-shadow:0 18px 50px -12px rgba(40,163,90,.85)}
+
+  /* ===== submit ===== */
+  .ob-submit{margin-top:26px}
+  .ob-submit button{
+    width:100%;border:0;cursor:pointer;background:var(--gold-grad);color:#1a1206;
+    font-family:'Sora';font-weight:800;font-size:16px;letter-spacing:.02em;
+    padding:18px;border-radius:13px;box-shadow:0 14px 50px -14px rgba(212,175,55,.7);transition:transform .2s, box-shadow .2s;
+  }
+  .ob-submit button:hover{transform:translateY(-2px);box-shadow:0 22px 60px -14px rgba(212,175,55,.9)}
+  .ob-submit button:disabled{opacity:.7;cursor:default;transform:none}
+  .ob-banner{display:none;margin-top:16px;text-align:center;color:#ffb3bd;background:rgba(224,51,75,.10);border:1px solid rgba(224,51,75,.4);border-radius:11px;padding:12px 14px;font-size:13.5px}
+  .ob-banner.show{display:block}
+  .ob-secnote{text-align:center;color:var(--muted);font-size:12.5px;margin-top:14px;line-height:1.6}
+  .ob-secnote b{color:var(--gold-soft)}
+  .ob-trustrow{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:14px;color:var(--muted);font-size:11.5px;letter-spacing:.06em}
+  .ob-trustrow i{font-style:normal}
+
+  @media(max-width:640px){
+    .grid{grid-template-columns:1fr}
+    .ob-card{padding:24px 18px 28px}
+    .cm-callout{flex-direction:column;align-items:stretch}
+    .cm-callout .btn-green{justify-content:center}
+  }
+
+  /* ===== thank-you success popup ===== */
+  .ob-success{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;padding:24px;
+    background:radial-gradient(900px 520px at 50% -5%, rgba(212,175,55,.14), transparent 60%), rgba(8,8,8,.95);
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:obFade .45s ease}
+  .ob-success.show{display:flex}
+  @keyframes obFade{from{opacity:0;transform:scale(.99)}to{opacity:1;transform:none}}
+  .ob-success .box{max-width:560px;text-align:center;
+    background:linear-gradient(180deg,rgba(26,20,20,.92),rgba(20,20,20,.96));
+    border:1px solid var(--line);border-radius:20px;padding:48px 36px;
+    box-shadow:0 50px 140px -50px rgba(0,0,0,.95), inset 0 1px 0 rgba(255,255,255,.04)}
+  .ob-success .seal{width:80px;height:80px;border-radius:50%;margin:0 auto 22px;display:flex;align-items:center;justify-content:center;
+    font-size:40px;color:#1a1206;background:var(--gold-grad);box-shadow:0 16px 50px -12px rgba(212,175,55,.7)}
+  .ob-success h2{font-family:'Sora';font-weight:800;font-size:clamp(24px,3.6vw,30px);margin-bottom:12px}
+  .ob-success h2 .g{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .ob-success p{color:var(--muted);font-size:15px;line-height:1.6;margin-bottom:6px}
+  .ob-success .steps{text-align:left;margin:22px auto 28px;max-width:430px;display:grid;gap:11px}
+  .ob-success .steps div{display:flex;gap:11px;color:var(--cream);font-size:14px;line-height:1.45}
+  .ob-success .steps div::before{content:"\2713";color:var(--gold);font-weight:800;flex:0 0 auto}
+  .ob-success .btn-gold{display:inline-flex;justify-content:center;align-items:center;width:100%;max-width:340px;margin:0 auto;
+    background:var(--gold-grad);color:#1a1206;font-family:'Sora';font-weight:700;font-size:15px;padding:16px 22px;border-radius:11px;text-decoration:none}
+</style>
+</head>
+<body>
+
+<!-- ===== TRUST STRIP ===== -->
+<div class="ob-strip">
+  <div class="wrap">
+    <span>Bank-Grade Encryption</span>
+    <span>FCRA-Compliant</span>
+    <span>Concierge-Certified Experts</span>
+    <span>100% Private</span>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="ob-head">
+  <div class="wrap">
+    <a href="/" class="ob-brand">
+      <img src="assets/logo.jpg" alt="Prestige Financial Concierge" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+      <span class="fallback" style="display:none">Prestige <b>Financial Concierge</b></span>
+    </a>
+    <span class="ob-lock">&#128274; Secure Client Onboarding</span>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="ob-hero">
+  <div class="wrap">
+    <span class="eyebrow">Payment Confirmed · Welcome Aboard</span>
+    <h1>You're One Step Closer to <span class="g">Transforming Your Credit</span></h1>
+    <p>Complete this secure form so your dedicated concierge can start working on your credit right away.</p>
+    <p class="quote">"The hardest step is behind you — let's build your future."</p>
+  </div>
+</section>
+
+<!-- ===== FORM (posts to our server, which forwards to Apex) ===== -->
+<section class="wrap">
+  <form id="obForm" class="ob-card" method="POST" action="/api/onboarding/submit" enctype="multipart/form-data" novalidate>
+
+    <!-- ===== Personal ===== -->
+    <div class="sec-label">Personal Information</div>
+    <div class="grid">
+      <div class="field"><label>First Name <span class="req">*</span></label><input type="text" name="first_name" required></div>
+      <div class="field"><label>Middle Name <span class="opt">(optional)</span></label><input type="text" name="middle_name"></div>
+      <div class="field"><label>Last Name <span class="req">*</span></label><input type="text" name="last_name" required></div>
+      <div class="field"><label>Suffix <span class="opt">(optional)</span></label>
+        <select name="suffix">
+          <option value="None" selected>None</option>
+          <option value="Jr.">Jr.</option>
+          <option value="Sr.">Sr.</option>
+          <option value="I">I</option>
+          <option value="II">II</option>
+          <option value="III">III</option>
+          <option value="IV">IV</option>
+          <option value="V">V</option>
+        </select>
+      </div>
+      <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" required></div>
+      <div class="field"><label>Phone <span class="req">*</span></label><input type="text" name="phone" placeholder="(___) ___-____" required></div>
+      <div class="field"><label>Date of Birth <span class="req">*</span></label><input type="date" name="date_of_birth" required></div>
+      <div class="field"><label>Social Security Number <span class="req">*</span></label><input type="text" name="ssn" inputmode="numeric" placeholder="9 digits" required></div>
+    </div>
+
+    <!-- ===== Address ===== -->
+    <div class="sec-label" style="margin-top:26px">Mailing Address</div>
+    <div class="grid">
+      <div class="field full"><label>Current Address <span class="req">*</span></label><input type="text" name="current_address" required></div>
+      <div class="field full"><label>Apartment / Suite <span class="opt">(optional)</span></label><input type="text" name="address_line2"></div>
+      <div class="field"><label>City <span class="req">*</span></label><input type="text" name="city" required></div>
+      <div class="field"><label>State <span class="req">*</span></label><input type="text" name="state" required></div>
+      <div class="field"><label>ZIP Code <span class="req">*</span></label><input type="text" name="zipcode" inputmode="numeric" required></div>
+    </div>
+
+    <!-- ===== Credit Monitoring ===== -->
+    <div class="sec-label" style="margin-top:26px">Credit Monitoring Access</div>
+    <div class="grid">
+      <div class="cm-callout">
+        <div class="cm-txt">
+          <b>You'll enroll with MyFreeScoreNow</b>
+          <span>We track your progress through MyFreeScoreNow. Create your account, then enter the login below.</span>
+        </div>
+        <a href="https://app.myfreescorenow.com/enroll/B01C6910" target="_blank" rel="noopener" class="btn-green">Get Credit Monitoring &rarr;</a>
+      </div>
+
+      <div class="field full"><label>Monitoring Provider</label><div class="cm-fixed">MyFreeScoreNow</div></div>
+      <div class="field"><label>MyFreeScoreNow Login Email <span class="req">*</span></label><input type="email" name="credit_monitoring_username" required></div>
+      <div class="field"><label>MyFreeScoreNow Password <span class="req">*</span></label><input type="password" name="credit_monitoring_password" required></div>
+      <div class="field full"><label>Security Question Answer <span class="opt">(optional)</span></label><input type="text" name="credit_monitoring_security_answer"></div>
+    </div>
+
+    <!-- ===== Documents ===== -->
+    <div class="sec-label" style="margin-top:26px">Verification Documents</div>
+    <div class="grid">
+      <div class="field full"><label>Driver's License <span class="req">*</span></label>
+        <input type="file" name="drivers_license" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>
+      <div class="field full"><label>Proof of Address <span class="req">*</span></label>
+        <input type="file" name="proof_of_address" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>
+      <div class="field full"><label>SSN Card <span class="opt">(optional)</span></label>
+        <input type="file" name="ssn_card" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>
+    </div>
+
+    <!-- ===== Submit ===== -->
+    <div class="ob-submit">
+      <button type="submit" id="obSubmit">&#128274;&nbsp; Submit My Information Securely</button>
+    </div>
+    <div class="ob-banner" id="obBanner" role="alert"></div>
+    <p class="ob-secnote">Your information is transmitted over an <b>encrypted connection</b> and used only to begin your credit repair. We never sell your data. Documents: PDF, JPG, PNG or WEBP · max 10&nbsp;MB each.</p>
+    <div class="ob-trustrow">
+      <i>&#128274; 256-Bit SSL</i> | <i>&#128737;&#65039; FCRA Compliant</i> | <i>&#10003; Private &amp; Confidential</i>
+    </div>
+  </form>
+</section>
+
+<!-- ===== THANK-YOU POPUP (overlay, same page) ===== -->
+<div class="ob-success" id="obSuccess">
+  <div class="box">
+    <div class="seal">&#10003;</div>
+    <h2>Thank You — <span class="g">You're All Set</span></h2>
+    <p>Your information has been received securely. Welcome to <b style="color:var(--cream)">Prestige Financial Concierge</b>.</p>
+    <div class="steps">
+      <div>Your file is now with your dedicated concierge.</div>
+      <div>We begin your 3-bureau review right away.</div>
+      <div>You'll get a welcome email with your next steps.</div>
+    </div>
+    <a href="/" class="btn-gold">Return Home</a>
+  </div>
+</div>
+
+<script>
+/* ============================================================================
+   Onboarding form → posts (multipart, incl. files) to OUR server at
+   /api/onboarding/submit, which forwards it server-to-server to Apex Growth
+   Solutions. The intake key lives only in .env — never here in the browser.
+   Inline per-field validation + server-error mapping + thank-you popup.
+   ============================================================================ */
+(function(){
+  var form   = document.getElementById('obForm');
+  var submitBtn = document.getElementById('obSubmit');
+  var banner = document.getElementById('obBanner');
+  if(!form) return;
+
+  var ALLOWED = ['pdf','jpg','jpeg','png','webp'];
+  var MAX_MB  = 10;
+
+  function digits(v){ return (v||'').replace(/\D/g,''); }
+  function fieldOf(name){ return form.querySelector('[name="'+name+'"]'); }
+  function errElFor(el){
+    var h = el.closest('.field'); if(!h) return null;
+    var e = h.querySelector('.field-err');
+    if(!e){ e = document.createElement('small'); e.className='field-err'; h.appendChild(e); }
+    return e;
+  }
+  function setErr(el, msg){
+    var e = errElFor(el);
+    if(msg){ el.classList.add('invalid'); el.classList.remove('valid'); if(e){ e.textContent=msg; e.classList.add('show'); } return false; }
+    el.classList.remove('invalid');
+    if((el.value||'').trim() || (el.type==='file' && el.files && el.files.length)) el.classList.add('valid');
+    if(e){ e.textContent=''; e.classList.remove('show'); }
+    return true;
+  }
+  function showBanner(msg){ if(banner){ banner.textContent=msg; banner.classList.add('show'); } }
+  function clearBanner(){ if(banner){ banner.textContent=''; banner.classList.remove('show'); } }
+
+  function ruleFor(el){
+    var name = el.name || '';
+    var val  = (el.value || '').trim();
+    var req  = el.hasAttribute('required');
+
+    if(el.type === 'file'){
+      if(!el.files || el.files.length === 0){ return req ? 'Please upload this document.' : ''; }
+      var f = el.files[0];
+      var ext = (f.name.split('.').pop() || '').toLowerCase();
+      if(ALLOWED.indexOf(ext) === -1) return 'Allowed: PDF, JPG, PNG, WEBP.';
+      if(f.size > MAX_MB*1024*1024) return 'File must be ' + MAX_MB + ' MB or less.';
+      return '';
+    }
+    if(req && !val) return 'This field is required.';
+    if(!val) return '';
+
+    if((name === 'email' || name === 'credit_monitoring_username') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) return 'Enter a valid email address.';
+    if(name === 'phone' && digits(val).length < 10) return 'Enter a valid 10-digit phone number.';
+    if(name === 'zipcode' && !/^\d{5}(-\d{4})?$/.test(val)) return 'Enter a valid ZIP code.';
+    if(name === 'ssn'){
+      if(!/^\d+$/.test(val)) return 'Digits only — no dashes or spaces.';
+      if(digits(val).length !== 9) return 'Enter your 9-digit SSN.';
+    }
+    if(name === 'date_of_birth'){
+      var dt = new Date(val);
+      if(isNaN(dt.getTime())) return 'Enter a valid date.';
+      if(dt > new Date()) return 'Date of birth can’t be in the future.';
+    }
+    return '';
+  }
+
+  function controls(){ return Array.prototype.slice.call(form.querySelectorAll('input:not([type=hidden]), select')); }
+  function validateOne(el){ return setErr(el, ruleFor(el)); }
+  function validateAll(){
+    var ok = true, first = null;
+    controls().forEach(function(el){ if(!validateOne(el)){ ok=false; if(!first) first=el; } });
+    if(first){ try{ first.focus(); first.scrollIntoView({behavior:'smooth', block:'center'}); }catch(e){} }
+    return ok;
+  }
+
+  controls().forEach(function(el){
+    var ev = (el.tagName==='SELECT' || el.type==='date' || el.type==='file') ? 'change' : 'blur';
+    el.addEventListener(ev, function(){ validateOne(el); });
+    el.addEventListener('input', function(){ if(el.classList.contains('invalid')) validateOne(el); });
+  });
+
+  function setSubmitting(on){
+    submitBtn.disabled = on;
+    submitBtn.innerHTML = on ? '&#9203;&nbsp; Submitting&hellip;' : '&#128274;&nbsp; Submit My Information Securely';
+  }
+
+  function showThankYou(){
+    var ov = document.getElementById('obSuccess');
+    if(ov){ ov.classList.add('show'); document.body.style.overflow='hidden'; }
+    try{ window.scrollTo({top:0, behavior:'smooth'}); }catch(e){}
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    clearBanner();
+    if(!validateAll()) return;
+    setSubmitting(true);
+
+    var fd = new FormData(form);
+    fetch('/api/onboarding/submit', { method:'POST', body: fd, headers:{ 'Accept':'application/json' } })
+      .then(function(r){ return r.json().then(function(j){ return {status:r.status, body:j}; }).catch(function(){ return {status:r.status, body:null}; }); })
+      .then(function(res){
+        var b = res.body || {};
+        if(res.status < 300 && b.ok){ showThankYou(); return; }
+
+        if(res.status === 422 && b.errors){
+          var first = null;
+          Object.keys(b.errors).forEach(function(fn){
+            var el = fieldOf(fn);
+            var msg = Array.isArray(b.errors[fn]) ? b.errors[fn][0] : String(b.errors[fn]);
+            if(el){ setErr(el, msg); if(!first) first = el; }
+          });
+          if(first){ try{ first.focus(); first.scrollIntoView({behavior:'smooth', block:'center'}); }catch(e){} }
+          else { showBanner('Please review your information and try again.'); }
+          setSubmitting(false);
+          return;
+        }
+
+        setSubmitting(false);
+        showBanner((b && b.message) ? b.message : 'Submission failed. Please try again.');
+      })
+      .catch(function(){ setSubmitting(false); showBanner('A network error occurred. Please try again.'); });
+  });
+})();
+</script>
+
+</body>
+</html>

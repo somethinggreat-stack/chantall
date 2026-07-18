@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Business Funding Assistance — Prestige Financial Concierge Services</title>
+<meta name="description" content="Access capital with Prestige Financial Concierge Services. Business funding assistance, business credit development, income verification, and mortgage readiness." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+<link rel="stylesheet" href="assets/funding-form.css" />
+</head>
+<body>
+
+<!-- ============ PREMIUM POPUP ============ -->
+<div class="pop-overlay" id="popOverlay" aria-hidden="true">
+  <div class="popup" role="dialog" aria-modal="true" aria-label="VIP welcome offer">
+    <button class="pop-close" id="popClose" aria-label="Close">&#10005;</button>
+    <div class="pop-img">
+      <img src="assets/founder-standing.jpeg" alt="Prestige Financial Concierge" />
+      <span class="pi-badge">&#9670; By Invitation</span>
+    </div>
+    <div class="pop-body">
+      <span class="pop-kicker">VIP Welcome Offer</span>
+      <h3>Your <span class="gold-text">Complimentary</span> Strategy Session</h3>
+      <p class="pop-offer">A $250 private consultation &mdash; on the house.</p>
+      <p class="pp">Map your credit, taxes, funding &amp; wealth goals with a dedicated concierge. No pressure &mdash; just a clear plan built around you.</p>
+      <form class="pop-form" onsubmit="return popSubmit(event)">
+        <div class="pf-grid">
+          <input type="text" name="name" required placeholder="Full name" />
+          <input type="tel" name="phone" required placeholder="Phone number" />
+        </div>
+        <input type="email" name="email" required placeholder="Email address" />
+        <span class="pop-chip-label">I'm interested in <em>(select all that apply)</em></span>
+        <div class="pop-chips" id="popChips">
+          <button type="button" class="pchip">Credit Repair</button>
+          <button type="button" class="pchip">Tax Preparation</button>
+          <button type="button" class="pchip">Business Funding</button>
+          <button type="button" class="pchip">Business Credit</button>
+          <button type="button" class="pchip">Tradelines</button>
+          <button type="button" class="pchip">Mortgage Ready</button>
+          <button type="button" class="pchip">Wealth Building</button>
+          <button type="button" class="pchip">Other</button>
+        </div>
+        <input type="hidden" name="interests" id="popInterests" />
+        <button type="submit" class="btn btn-gold">Claim My Session &rarr;</button>
+      </form>
+      <p class="pop-fine">&#128274; <b>Limited spots</b>&nbsp;&middot; 100% private</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="brand">
+      <img src="assets/logo.jpg" alt="Prestige Financial Concierge" />
+    </a>
+    <nav>
+      <ul>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/tax">Tax</a></li>
+        <li><a href="/funding">Funding</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://calendly.com/bellachon-cb/30min" target="_blank" rel="noopener" class="btn btn-gold">Book Consultation</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="closeMenu" aria-label="Close menu">&#10005;</button>
+  <a href="/#about">About</a>
+  <a href="/#pricing">Pricing</a>
+  <a href="/tax">Tax</a>
+  <a href="/funding">Funding</a>
+  <a href="/contact">Contact</a>
+  <a href="https://calendly.com/bellachon-cb/30min" target="_blank" rel="noopener" class="btn btn-gold">Book Consultation</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="subhero">
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <div class="subhero-copy">
+      <p class="crumbs"><a href="/">Home</a> &nbsp;/&nbsp; Funding Services</p>
+      <span class="eyebrow" style="margin-top:1rem;display:inline-block">Business Funding Assistance</span>
+      <h1>Capital to <span class="gold-text">Grow &amp; Scale</span></h1>
+      <p class="lede">We help you build fundable business credit and secure the capital your business needs &mdash; aligned to your stage, your goals, and your timeline.</p>
+      <div class="hero-actions">
+        <a href="#get-started" class="btn btn-gold">Check My Eligibility &rarr;</a>
+        <a href="#packages" class="btn btn-ghost">See Programs</a>
+      </div>
+    </div>
+    <div class="subhero-photo">
+      <div class="ring"></div>
+      <div class="frame"><img src="assets/founder-standing.jpeg" alt="Prestige funding concierge" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FUNDING ELIGIBILITY QUIZ ============ -->
+<section class="fq-section" id="get-started">
+  <div class="wrap">
+    <div class="fq-intro">
+      <span class="eyebrow">Funding Pre-Qualification</span>
+      <div class="sec-divider"><span>&#9670;</span></div>
+      <h2>See How Much You <span class="gold-text">Could Qualify For</span></h2>
+      <p>Answer a few quick questions and our concierge team will map your fastest path to funding. Takes under two minutes &mdash; no impact to your credit.</p>
+    </div>
+
+    <div class="fq-progress-wrap">
+      <div class="fq-progress-top">
+        <span class="fq-cat" id="fqCat">Funding Goal</span>
+        <span class="fq-count" id="fqCount">1 / 9</span>
+      </div>
+      <div class="fq-bar"><div class="fq-fill" id="fqFill"></div></div>
+    </div>
+
+    <div class="fq-card">
+      <form id="fqForm" novalidate>
+
+        <!-- STEP 1 -->
+        <div class="fq-step active" data-cat="Funding Goal" data-type="single">
+          <span class="fq-num">1</span>
+          <h3 class="fq-q">What funding amount would support your goals?</h3>
+          <div class="fq-options">
+            <button type="button" class="fq-opt" data-val="$10,000 - $25,000"><span class="fq-key">A</span> $10,000 - $25,000 <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="$25,000 - $50,000"><span class="fq-key">B</span> $25,000 - $50,000 <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="$50,000 - $100,000"><span class="fq-key">C</span> $50,000 - $100,000 <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="$100,000 - $250,000"><span class="fq-key">D</span> $100,000 - $250,000 <span class="fq-check">&#10003;</span></button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="fq-step" data-cat="Confirmation" data-type="single">
+          <span class="fq-num">2</span>
+          <h3 class="fq-q">This form helps us evaluate how we can best assist you.</h3>
+          <p class="fq-hint">Please provide accurate and honest information so we can offer the right solutions. Do you confirm that all information provided will be accurate and truthful?</p>
+          <div class="fq-options">
+            <button type="button" class="fq-opt" data-val="Confirmed accurate &amp; truthful"><span class="fq-key">A</span> Yes, I confirm all information provided will be accurate and truthful. <span class="fq-check">&#10003;</span></button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="fq-step" data-cat="Credit Cards" data-type="single">
+          <span class="fq-num">3</span>
+          <h3 class="fq-q">Do your personal credit cards have a combined credit limit of $15,000 or more?</h3>
+          <p class="fq-hint">Do not include business credit cards or authorized user accounts.</p>
+          <div class="fq-options">
+            <button type="button" class="fq-opt" data-val="$15,000+ in personal limits"><span class="fq-key">A</span> Yes, I have $15,000 or more in total personal credit card limits <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="Less than $15,000 in limits"><span class="fq-key">B</span> No, I have less than $15,000 in total personal credit card limits <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="No personal credit cards"><span class="fq-key">C</span> No, I do not have any personal credit cards <span class="fq-check">&#10003;</span></button>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="fq-step" data-cat="Credit Utilization" data-type="single">
+          <span class="fq-num">4</span>
+          <h3 class="fq-q">Approximately what percentage of your personal credit card limits are you using right now?</h3>
+          <p class="fq-hint">For reference: using $10,000 of a $20,000 total limit equals 50% usage.</p>
+          <div class="fq-options">
+            <button type="button" class="fq-opt" data-val="0 - 10%"><span class="fq-key">A</span> 0 - 10% <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="11 - 20%"><span class="fq-key">B</span> 11 - 20% <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="21 - 30%"><span class="fq-key">C</span> 21 - 30% <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="Over 30% - can reduce in 30-60 days"><span class="fq-key">D</span> Over 30% &mdash; I can reduce my balances to 10-20% within 30-60 days (required to qualify) <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="Over 30% - cannot reduce soon"><span class="fq-key">E</span> Over 30% &mdash; I cannot reduce my balances within the next 30-60 days <span class="fq-check">&#10003;</span></button>
+          </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="fq-step" data-cat="Credit Score" data-type="single">
+          <span class="fq-num">5</span>
+          <div class="fq-callout">&#10024; <b>Exciting news!</b> Based on what you've shared, you could potentially access <b>$100K&ndash;$250K</b> in funding to support your goals.</div>
+          <h3 class="fq-q">What is your personal FICO score as reported by Experian, TransUnion, and Equifax?</h3>
+          <div class="fq-options">
+            <button type="button" class="fq-opt" data-val="800+"><span class="fq-key">A</span> 800+ <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="750 - 799"><span class="fq-key">B</span> 750 - 799 <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="700 - 749"><span class="fq-key">C</span> 700 - 749 <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="650 - 699"><span class="fq-key">D</span> 650 - 699 <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="Below 650"><span class="fq-key">E</span> Below 650 <span class="fq-check">&#10003;</span></button>
+          </div>
+        </div>
+
+        <!-- STEP 6 -->
+        <div class="fq-step" data-cat="Business Situation" data-type="single">
+          <span class="fq-num">6</span>
+          <h3 class="fq-q">Which best describes your situation?</h3>
+          <div class="fq-options">
+            <button type="button" class="fq-opt" data-val="I have a registered business"><span class="fq-key">A</span> I have a registered business <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="No business, interested in personal funding"><span class="fq-key">B</span> I don't have a business, I'm interested in personal funding <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="Interested in purchasing an aged corp"><span class="fq-key">C</span> I don't have a business but I'm interested in purchasing an existing company (aged corp) <span class="fq-check">&#10003;</span></button>
+          </div>
+        </div>
+
+        <!-- STEP 7 -->
+        <div class="fq-step" data-cat="Annual Income" data-type="single">
+          <span class="fq-num">7</span>
+          <h3 class="fq-q">What is your current annual personal income?</h3>
+          <p class="fq-hint">Include your salary, wages, or other personal income sources.</p>
+          <div class="fq-options">
+            <button type="button" class="fq-opt" data-val="Less than $25,000"><span class="fq-key">A</span> Less than $25,000 <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="$25,000 - $49,999"><span class="fq-key">B</span> $25,000 &ndash; $49,999 <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="$50,000 - $74,999"><span class="fq-key">C</span> $50,000 &ndash; $74,999 <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="$75,000 - $99,999"><span class="fq-key">D</span> $75,000 &ndash; $99,999 <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="$100,000 or more"><span class="fq-key">E</span> $100,000 or more <span class="fq-check">&#10003;</span></button>
+          </div>
+        </div>
+
+        <!-- STEP 8 (multi-select) -->
+        <div class="fq-step" data-cat="Credit Profile" data-type="multi">
+          <span class="fq-num">8</span>
+          <h3 class="fq-q">Do you have any of the following negative marks on your credit profile?</h3>
+          <p class="fq-hint"><em>Select all that apply</em></p>
+          <div class="fq-options">
+            <button type="button" class="fq-opt" data-val="Bankruptcy"><span class="fq-key">A</span> Bankruptcy <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="Collections or Charge-offs"><span class="fq-key">B</span> Collections or Charge-offs <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="Foreclosures"><span class="fq-key">C</span> Foreclosures <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="Late Payments"><span class="fq-key">D</span> Late Payments <span class="fq-check">&#10003;</span></button>
+            <button type="button" class="fq-opt" data-val="None - clean credit" data-exclusive="true"><span class="fq-key">E</span> None of the above, my credit is clean <span class="fq-check">&#10003;</span></button>
+          </div>
+        </div>
+
+        <!-- STEP 9 (contact) -->
+        <div class="fq-step" data-cat="Your Details" data-type="contact">
+          <span class="fq-num">9</span>
+          <h3 class="fq-q">Where should we send your funding strategy?</h3>
+          <p class="fq-hint">Your dedicated concierge will reach out with your personalized plan.</p>
+          <div class="fq-field"><label>First Name <span class="req">*</span></label><input type="text" name="fq_first" placeholder="James" required /></div>
+          <div class="fq-field"><label>Last Name <span class="req">*</span></label><input type="text" name="fq_last" placeholder="Wilson" required /></div>
+          <div class="fq-field"><label>Phone Number <span class="req">*</span></label>
+            <div class="fq-phone"><span class="cc">&#127482;&#127480; +1</span><input type="tel" name="fq_phone" placeholder="(555) 000-0000" required /></div>
+          </div>
+          <div class="fq-field"><label>Email Address <span class="req">*</span></label><input type="email" name="fq_email" placeholder="james@email.com" required /></div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="fq-step" data-cat="Done" data-type="done">
+          <div class="fq-done">
+            <div class="seal">&#10003;</div>
+            <h3>You're all set!</h3>
+            <p>Thank you &mdash; your funding pre-qualification is in. A Prestige concierge will contact you shortly with your personalized strategy and next steps.</p>
+            <a href="/" class="btn btn-gold">Back to Home</a>
+          </div>
+        </div>
+
+        <!-- FOOTER NAV -->
+        <div class="fq-foot" id="fqFoot">
+          <button type="button" class="fq-back" id="fqBack" style="visibility:hidden">&larr; Back</button>
+          <div class="fq-foot-right">
+            <span class="fq-enter">Press <b>Enter &crarr;</b></span>
+            <button type="button" class="fq-ok" id="fqOk">OK &rarr;</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="sec services">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">What's Included</span>
+      <div class="sec-divider"><span>&#9670;</span></div>
+      <h2>Funding &amp; <span class="gold-text">Capital Solutions</span></h2>
+      <p>Everything you need to become fundable &mdash; and to secure the capital that moves your business forward.</p>
+    </div>
+    <div class="panel-grid cols3">
+      <div class="svc2 reveal"><div class="ic">&#10070;</div><h3>Business Funding Assistance</h3><p>Access to capital and funding programs aligned with your business stage and goals.</p></div>
+      <div class="svc2 reveal"><div class="ic">&#11041;</div><h3>Business Credit Development</h3><p>Build strong business credit separate from personal &mdash; the key to better terms.</p></div>
+      <div class="svc2 reveal"><div class="ic">&#9672;</div><h3>Funding Readiness Review</h3><p>We assess and strengthen your profile so lenders say yes more often.</p></div>
+      <div class="svc2 reveal"><div class="ic">&#9635;</div><h3>Income Verification Documents</h3><p>Professional, lender-ready income documentation prepared on demand.</p></div>
+      <div class="svc2 reveal"><div class="ic">&#8962;</div><h3>Mortgage Readiness</h3><p>Get fully positioned and pre-qualified for homeownership with confidence.</p></div>
+      <div class="svc2 reveal"><div class="ic">&#9670;</div><h3>Debt Reduction Strategy</h3><p>Improve your ratios and cash flow so you qualify for more, for less.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="sec process">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">How It Works</span>
+      <div class="sec-divider"><span>&#9670;</span></div>
+      <h2>Your path to <span class="gold-text">approved</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="no gold-text">01</div><h3>Assessment</h3><p>We review your credit, revenue, and goals to find the right funding path.</p></div>
+      <div class="step reveal"><div class="no gold-text">02</div><h3>Get Fundable</h3><p>Build business credit and clean up your profile so lenders take you seriously.</p></div>
+      <div class="step reveal"><div class="no gold-text">03</div><h3>Match &amp; Apply</h3><p>We match you to programs and prepare a strong, lender-ready application.</p></div>
+      <div class="step reveal"><div class="no gold-text">04</div><h3>Secure Capital</h3><p>You get approved &mdash; and we keep strengthening your profile for the next round.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PACKAGES ============ -->
+<section class="sec services" id="packages">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Funding Programs</span>
+      <div class="sec-divider"><span>&#9670;</span></div>
+      <h2>Programs Built for <span class="gold-text">Every Stage</span></h2>
+      <p>From startup to scale-up. Your exact path is confirmed in a free eligibility consultation.</p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg reveal">
+        <h3>Startup</h3>
+        <div class="price">Build<small> &nbsp;phase</small></div>
+        <p class="psub">New or early-stage businesses</p>
+        <ul>
+          <li><span class="mk">&#10003;</span> Business credit setup</li>
+          <li><span class="mk">&#10003;</span> Entity &amp; compliance review</li>
+          <li><span class="mk">&#10003;</span> Starter tradelines</li>
+          <li><span class="mk">&#10003;</span> Fundability roadmap</li>
+        </ul>
+        <a href="#get-started" class="btn btn-ghost">Get Started</a>
+      </div>
+      <div class="pkg feature reveal">
+        <span class="ribbon">Most Popular</span>
+        <h3>Growth</h3>
+        <div class="price">Scale<small> &nbsp;phase</small></div>
+        <p class="psub">Established businesses seeking capital</p>
+        <ul>
+          <li><span class="mk">&#10003;</span> Everything in Startup</li>
+          <li><span class="mk">&#10003;</span> Funding matching &amp; application</li>
+          <li><span class="mk">&#10003;</span> Income verification docs</li>
+          <li><span class="mk">&#10003;</span> Debt &amp; ratio optimization</li>
+          <li><span class="mk">&#10003;</span> Priority concierge support</li>
+        </ul>
+        <a href="#get-started" class="btn btn-gold">Get Started</a>
+      </div>
+      <div class="pkg reveal">
+        <h3>Concierge</h3>
+        <div class="price">Custom</div>
+        <p class="psub">Full-service, hands-off capital strategy</p>
+        <ul>
+          <li><span class="mk">&#10003;</span> Everything in Growth</li>
+          <li><span class="mk">&#10003;</span> Multi-round funding strategy</li>
+          <li><span class="mk">&#10003;</span> Mortgage readiness program</li>
+          <li><span class="mk">&#10003;</span> Coordinated with tax &amp; credit</li>
+          <li><span class="mk">&#10003;</span> VIP priority access</li>
+        </ul>
+        <a href="#get-started" class="btn btn-ghost">Talk to Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="sec why">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Why Prestige</span>
+      <div class="sec-divider"><span>&#9670;</span></div>
+      <h2>Funding done the <span class="gold-text">right way</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="value reveal"><div class="ic">&#128081;</div><h3>Fundable First</h3><p>We make you genuinely fundable &mdash; not just submit applications and hope.</p></div>
+      <div class="value reveal"><div class="ic">&#127919;</div><h3>Right-Fit Programs</h3><p>We match you to capital that fits your stage, so you get better terms.</p></div>
+      <div class="value reveal"><div class="ic">&#129309;</div><h3>One Coordinated Plan</h3><p>Funding, credit, and taxes managed together for maximum approval power.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec process">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Questions</span>
+      <div class="sec-divider"><span>&#9670;</span></div>
+      <h2>Funding <span class="gold-text">FAQs</span></h2>
+    </div>
+    <div class="faq reveal">
+      <details open><summary>Do I need good personal credit to get funded? <span class="pl">+</span></summary><p>Strong personal credit helps, but we also build your business credit profile &mdash; and can work on improving your personal credit alongside it for the best results.</p></details>
+      <details><summary>How much funding can I qualify for? <span class="pl">+</span></summary><p>It depends on your credit, revenue, and structure. In your free assessment we'll give you a realistic range and a plan to increase it.</p></details>
+      <details><summary>How long does it take? <span class="pl">+</span></summary><p>Some clients are funded quickly; others need a few weeks to become fundable first. We give you a clear timeline up front.</p></details>
+      <details><summary>Can you help with mortgage readiness too? <span class="pl">+</span></summary><p>Yes. We position you for homeownership with credit, income documentation, and debt strategies tailored to lender requirements.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo.jpg" alt="Prestige logo" />
+        <p>Prestige Financial Concierge Services &mdash; luxury financial solutions, personalized service, and exceptional results, all under one roof.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/#services">Credit Restoration</a></li>
+          <li><a href="/#services">Business Credit</a></li>
+          <li><a href="/tax">Tax Strategy</a></li>
+          <li><a href="/funding">Business Funding</a></li>
+          <li><a href="/#services">Wealth Building</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#about">About Us</a></li>
+          <li><a href="/#process">Our Process</a></li>
+          <li><a href="/#why">Why Prestige</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/disclaimer">Disclaimer</a></li>
+          <li><a href="/service-agreement">Service Agreement</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; <span id="year"></span> Prestige Financial Concierge Services. All rights reserved.</p>
+      <div class="socials">
+        <a href="#" class="soc ig" aria-label="Instagram"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07c-1.27.06-2.15.26-2.91.56-.79.31-1.46.72-2.12 1.38C1.35 2.67.94 3.34.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.72 1.47 1.38 2.13.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.8-.31 1.47-.72 2.13-1.38.66-.66 1.07-1.33 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.12A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0m0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84M12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4m6.41-10.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44"/></svg></a>
+        <a href="#" class="soc fb" aria-label="Facebook"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6.02 4.39 11.01 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8v8.44C19.61 23.08 24 18.09 24 12.07"/></svg></a>
+        <a href="#" class="soc li" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13M7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0"/></svg></a>
+        <a href="#" class="soc em" aria-label="Email"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M22 4H2a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h20a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1m-1.4 2L12 11.69 3.4 6h17.2M3 18V7.27l8.47 5.6a1 1 0 0 0 1.06 0L21 7.27V18H3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);});
+  var mm=document.getElementById('mobileMenu');
+  document.getElementById('menuBtn').onclick=function(){mm.classList.add('open');};
+  document.getElementById('closeMenu').onclick=function(){mm.classList.remove('open');};
+  mm.querySelectorAll('a').forEach(function(a){a.onclick=function(){mm.classList.remove('open');};});
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=((i%3)*0.08)+'s';io.observe(el);});
+  document.getElementById('year').textContent=new Date().getFullYear();
+  function submitForm(e){
+    e.preventDefault();
+    var btn=e.target.querySelector('button[type=submit]');
+    var orig=btn.innerHTML;
+    btn.textContent='✓ Request Received — We\'ll Be In Touch';btn.style.opacity=.85;
+    e.target.reset();
+    setTimeout(function(){btn.innerHTML=orig;btn.style.opacity=1;},3500);
+    return false;
+  }
+
+  // premium popup
+  (function(){
+    var ov=document.getElementById('popOverlay');
+    if(!ov) return;
+    function openPop(){ov.classList.add('show');ov.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+    function closePop(){ov.classList.remove('show');ov.setAttribute('aria-hidden','true');document.body.style.overflow='';
+      try{sessionStorage.setItem('pfc_popup_closed','1');}catch(err){}}
+    var filled=false;try{filled=localStorage.getItem('pfc_lead_filled')==='1';}catch(err){}
+    try{var nav=performance.getEntriesByType('navigation')[0];
+      var isReload=nav?nav.type==='reload':(performance.navigation&&performance.navigation.type===1);
+      if(isReload){sessionStorage.removeItem('pfc_popup_closed');}}catch(err){}
+    var closed=false;try{closed=sessionStorage.getItem('pfc_popup_closed')==='1';}catch(err){}
+    if(!filled&&!closed){setTimeout(openPop,3000);}
+    document.getElementById('popClose').onclick=closePop;
+    ov.addEventListener('click',function(e){if(e.target===ov)closePop();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show'))closePop();});
+    var chips=document.querySelectorAll('#popChips .pchip');
+    var hidden=document.getElementById('popInterests');
+    function syncChips(){var p=[];chips.forEach(function(c){if(c.classList.contains('on'))p.push(c.textContent.trim());});hidden.value=p.join(', ');}
+    chips.forEach(function(c){c.addEventListener('click',function(){c.classList.toggle('on');syncChips();});});
+    window.popSubmit=function(e){
+      e.preventDefault();
+      var f=e.target;
+      function val(s){var el=f.querySelector(s);return el?el.value:'';}
+      var data={name:val('input[name=name]'),phone:val('input[name=phone]'),email:val('input[name=email]'),interests:hidden.value,source:'Welcome Popup (Funding Page)'};
+      if(!data.interests){alert('Please select at least one service you\'re interested in.');return false;}
+      try{fetch('/api/leads/popup',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});}catch(err){}
+      try{localStorage.setItem('pfc_lead_filled','1');}catch(err){}
+      var b=f.querySelector('button[type=submit]');
+      b.innerHTML='✓ You\'re In — Check Your Email';b.style.opacity=.85;
+      setTimeout(function(){closePop();location.hash='#get-started';},1400);
+      return false;
+    };
+  })();
+</script>
+<script src="assets/funding-form.js"></script>
+<script src="assets/galaxy.js"></script>
+<script src="assets/cursor.js"></script>
+</body>
+</html>

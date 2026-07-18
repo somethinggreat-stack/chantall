@@ -1,0 +1,109 @@
+/* ===========================================================
+   PRESTIGE — Funding Eligibility Quiz (9-step)
+   Branded dark/gold typeform-style flow. Inherits tokens
+   from styles.css.
+   =========================================================== */
+
+.fq-section{position:relative;overflow:hidden;padding:90px 0;
+  background:radial-gradient(120% 80% at 50% -10%,rgba(200,16,46,.14),transparent 55%),var(--black)}
+.fq-section .wrap{max-width:880px;position:relative;z-index:2}
+
+.fq-intro{text-align:center;margin-bottom:34px}
+.fq-intro .eyebrow{display:inline-block;margin-bottom:.8rem}
+.fq-intro h2{font-size:clamp(1.8rem,3.6vw,2.6rem)}
+.fq-intro p{color:var(--muted);font-weight:300;max-width:560px;margin:.9rem auto 0}
+
+/* progress */
+.fq-progress-wrap{margin-bottom:14px}
+.fq-progress-top{display:flex;align-items:center;justify-content:space-between;
+  font-size:.8rem;letter-spacing:.04em;margin-bottom:.7rem}
+.fq-cat{font-family:'Sora',sans-serif;font-weight:600;color:var(--gold-soft);
+  text-transform:uppercase;letter-spacing:.16em;font-size:.72rem}
+.fq-count{font-family:'Sora',sans-serif;font-weight:700;color:var(--cream)}
+.fq-bar{height:6px;border-radius:30px;background:rgba(255,255,255,.07);overflow:hidden}
+.fq-fill{height:100%;width:11%;border-radius:30px;background:var(--gold-grad);
+  box-shadow:0 0 18px -2px rgba(212,175,55,.7);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+
+/* card */
+.fq-card{position:relative;border:1px solid var(--line);border-radius:18px;
+  background:linear-gradient(180deg,rgba(26,20,20,.85),rgba(12,12,12,.92));
+  padding:2.6rem 2.4rem;box-shadow:0 50px 110px -50px rgba(0,0,0,.9)}
+
+.fq-step{display:none;animation:fqIn .45s cubic-bezier(.2,.7,.2,1)}
+.fq-step.active{display:block}
+@keyframes fqIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+.fq-num{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:9px;
+  background:var(--gold-grad);color:#1a1206;font-family:'Sora',sans-serif;font-weight:800;
+  font-size:1rem;margin-bottom:1.1rem;box-shadow:0 10px 26px -10px rgba(212,175,55,.7)}
+.fq-q{font-family:'Sora',sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.18;
+  font-size:clamp(1.3rem,2.5vw,1.7rem);margin-bottom:.5rem}
+.fq-hint{color:var(--muted);font-weight:300;font-size:.95rem;margin-bottom:1.5rem}
+
+/* options */
+.fq-options{display:flex;flex-direction:column;gap:.85rem;margin-bottom:1.8rem}
+.fq-opt{display:flex;align-items:center;gap:1rem;width:100%;text-align:left;cursor:pointer;
+  border:1px solid var(--line);border-radius:12px;padding:1.05rem 1.2rem;
+  background:rgba(255,255,255,.02);color:var(--cream);font-family:'Inter',sans-serif;
+  font-size:1rem;font-weight:300;transition:.25s cubic-bezier(.2,.7,.2,1)}
+.fq-opt:hover{border-color:var(--gold);background:rgba(212,175,55,.06);transform:translateX(4px)}
+.fq-key{flex:none;width:34px;height:34px;border-radius:8px;display:grid;place-items:center;
+  background:rgba(212,175,55,.1);border:1px solid var(--line);color:var(--gold-soft);
+  font-family:'Sora',sans-serif;font-weight:700;font-size:.85rem;transition:.25s}
+.fq-opt:hover .fq-key{background:var(--gold-grad);color:#1a1206}
+.fq-opt.selected{border-color:var(--gold);background:rgba(212,175,55,.1);
+  box-shadow:0 0 0 1px var(--gold),0 18px 40px -22px rgba(212,175,55,.6)}
+.fq-opt.selected .fq-key{background:var(--gold-grad);color:#1a1206}
+.fq-opt .fq-check{margin-left:auto;color:var(--gold);opacity:0;transform:scale(.6);transition:.25s}
+.fq-opt.selected .fq-check{opacity:1;transform:scale(1)}
+
+/* text inputs (final step) */
+.fq-field{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.2rem}
+.fq-field label{font-size:.82rem;font-weight:500;color:var(--cream)}
+.fq-field label .req{color:var(--red-glow);margin-left:2px}
+.fq-field input{width:100%;background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:10px;
+  color:var(--cream);font-family:'Inter',sans-serif;font-size:1rem;padding:.9rem 1.05rem;transition:.3s}
+.fq-field input::placeholder{color:#6c665c}
+.fq-field input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.14)}
+.fq-phone{display:flex}
+.fq-phone .cc{flex:none;display:flex;align-items:center;gap:.35rem;border:1px solid var(--line);
+  border-right:none;border-radius:10px 0 0 10px;padding:0 .9rem;color:var(--muted);font-size:.9rem;
+  background:rgba(0,0,0,.3)}
+.fq-phone input{border-radius:0 10px 10px 0}
+
+/* footer / nav */
+.fq-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  margin-top:.4rem}
+.fq-back{display:inline-flex;align-items:center;gap:.45rem;font-size:.86rem;color:var(--muted);
+  border:1px solid var(--line);border-radius:10px;padding:.7rem 1.2rem;cursor:pointer;
+  background:transparent;font-family:'Inter',sans-serif;transition:.25s}
+.fq-back:hover{border-color:var(--gold);color:var(--gold-soft)}
+.fq-foot-right{display:flex;align-items:center;gap:1.1rem;margin-left:auto}
+.fq-enter{font-size:.78rem;color:#7a746a}
+.fq-enter b{color:var(--gold-soft);font-weight:600}
+.fq-ok{display:inline-flex;align-items:center;gap:.5rem;font-family:'Sora',sans-serif;font-weight:700;
+  font-size:.88rem;letter-spacing:.04em;color:#1a1206;background:var(--gold-grad);
+  border:none;border-radius:10px;padding:.85rem 1.7rem;cursor:pointer;
+  box-shadow:0 14px 36px -14px rgba(212,175,55,.7);transition:.3s}
+.fq-ok:hover{transform:translateY(-2px);box-shadow:0 20px 46px -14px rgba(212,175,55,.85)}
+.fq-ok:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* highlight callout (step 5) */
+.fq-callout{border-left:3px solid var(--gold);background:rgba(212,175,55,.06);
+  border-radius:0 10px 10px 0;padding:.8rem 1.1rem;margin-bottom:1.4rem;font-size:.95rem;
+  color:var(--gold-soft);font-weight:300}
+.fq-callout b{color:var(--gold-soft);font-weight:600}
+
+/* success */
+.fq-done{text-align:center;padding:1rem 0}
+.fq-done .seal{width:78px;height:78px;margin:0 auto 1.4rem;border-radius:50%;display:grid;place-items:center;
+  background:var(--gold-grad);color:#1a1206;font-size:2.1rem;box-shadow:0 18px 44px -10px rgba(212,175,55,.7)}
+.fq-done h3{font-size:1.7rem;margin-bottom:.7rem}
+.fq-done p{color:var(--muted);font-weight:300;max-width:440px;margin:0 auto 1.6rem}
+
+@media(max-width:560px){
+  .fq-section{padding:64px 0}
+  .fq-card{padding:1.8rem 1.4rem}
+  .fq-foot-right{width:100%;justify-content:space-between;margin-left:0}
+  .fq-back{flex:none}
+}

@@ -1,0 +1,7 @@
+[25-Jun-2026 11:05:30 UTC] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.34. in /home/prestig5/public_html/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/prestig5/public_html/vendor/composer/autoload_real.php(25): require()
+#1 /home/prestig5/public_html/vendor/autoload.php(22): ComposerAutoloaderInitbfe12996eeecb6fdc8713a9fd9d431f8::getLoader()
+#2 /home/prestig5/public_html/public/index.php(34): require('/home/prestig5/...')
+#3 {main}
+  thrown in /home/prestig5/public_html/vendor/composer/platform_check.php on line 22

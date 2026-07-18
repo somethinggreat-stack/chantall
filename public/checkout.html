@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Secure Checkout — Prestige Financial Concierge</title>
+<meta name="description" content="Secure, bank-grade enrollment for Prestige Financial Concierge credit repair programs. 256-bit SSL encrypted checkout." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+<link rel="stylesheet" href="assets/checkout.css" />
+<!-- Authorize.Net Accept.js — preloaded up-front (production) so window.Accept is
+     ready long before the form is filled. No waiting, no race on submit. -->
+<script src="https://js.authorize.net/v1/Accept.js" defer></script>
+</head>
+<body class="co-body">
+
+<!-- ===== TRUST STRIP ===== -->
+<div class="co-strip">
+  <div class="wrap">
+    <span>Concierge-Certified Experts</span>
+    <span>Clear, Written Agreements</span>
+    <span>256-Bit Secure Checkout</span>
+    <span>No Fees Until Work Is Performed</span>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="co-head">
+  <div class="wrap">
+    <a href="/" class="brand"><img src="assets/logo.jpg" alt="Prestige Financial Concierge" /></a>
+    <a href="/#pricing" class="co-back">&larr; Back to plans</a>
+    <span class="co-lock">&#128274; <span class="lk-txt">Secure Checkout</span></span>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="co-hero">
+  <div class="wrap">
+    <span class="eyebrow" id="planEyebrow">Secure Enrollment</span>
+    <h1>One Step Away From <span class="gold-text">Better Credit</span>.</h1>
+    <p class="sub">Complete your enrollment below. Every detail is protected with bank-grade, end-to-end encryption.</p>
+
+    <div class="co-journey">
+      <div class="pt"><b>Today</b><span>Where you start</span></div>
+      <div class="arrow">&rarr;</div>
+      <div class="pt to"><b>Approved</b><span>Where we take you</span></div>
+    </div>
+
+    <div class="co-badges">
+      <span class="bdg">&#127963;&#65039; <b>FCRA</b>-Compliant</span>
+      <span class="bdg">&#9889; <b>Same-Day</b> Start</span>
+      <span class="bdg">&#11088; <b>4.9 / 5</b> Client Rating</span>
+      <span class="bdg">&#128274; <b>256-Bit</b> SSL</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAIN ===== -->
+<section class="co-main">
+  <div class="wrap">
+    <form class="co-grid" id="coForm" novalidate>
+
+      <!-- LEFT: form -->
+      <div class="co-left">
+
+        <!-- Personal info -->
+        <div class="co-card">
+          <div class="co-card-h">
+            <span class="ic">&#128100;</span>
+            <h3>Personal Information</h3>
+          </div>
+          <div class="co-row">
+            <div class="co-field"><label>First Name <span class="req">*</span></label><input type="text" name="first" placeholder="John" required /></div>
+            <div class="co-field"><label>Last Name <span class="req">*</span></label><input type="text" name="last" placeholder="Doe" required /></div>
+          </div>
+          <div class="co-row">
+            <div class="co-field"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="john@example.com" required /></div>
+            <div class="co-field"><label>Phone Number <span class="req">*</span></label><input type="tel" name="phone" placeholder="(555) 000-0000" required /></div>
+          </div>
+          <div class="co-field"><label>Street Address <span class="req">*</span></label><input type="text" name="address" placeholder="123 Main Street" required /></div>
+          <div class="co-row-3">
+            <div class="co-field"><label>City <span class="req">*</span></label><input type="text" name="city" placeholder="New York" required /></div>
+            <div class="co-field"><label>State <span class="req">*</span></label>
+              <select name="state" required>
+                <option value="">Select</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+              </select>
+            </div>
+            <div class="co-field"><label>ZIP Code <span class="req">*</span></label><input type="text" name="zip" placeholder="10001" inputmode="numeric" required /></div>
+          </div>
+        </div>
+
+        <!-- Payment -->
+        <div class="co-card">
+          <div class="co-card-h">
+            <span class="ic">&#128179;</span>
+            <h3>Payment Method</h3>
+            <span class="tag">&#128274; End-to-End Encrypted</span>
+          </div>
+
+          <div class="pay-method">
+            <span class="pm-ic">&#128179;</span>
+            <div>
+              <b>Credit / Debit Card</b>
+              <span>Secure &middot; Tokenized &middot; Instant</span>
+            </div>
+            <div class="cards"><i>VISA</i><i>MC</i><i>AMEX</i><i>DISC</i></div>
+          </div>
+
+          <div class="co-field"><label>Cardholder Name <span class="req">*</span></label><input type="text" name="cardname" placeholder="John Doe" required /></div>
+          <div class="co-field"><label>Card Number <span class="req">*</span></label><input type="text" name="cardnumber" id="cardNumber" placeholder="&bull;&bull;&bull;&bull;  &bull;&bull;&bull;&bull;  &bull;&bull;&bull;&bull;  &bull;&bull;&bull;&bull;" inputmode="numeric" autocomplete="cc-number" required /></div>
+          <div class="co-row-3">
+            <div class="co-field"><label>Month <span class="req">*</span></label>
+              <select name="exp_month" required><option value="">MM</option><option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option></select>
+            </div>
+            <div class="co-field"><label>Year <span class="req">*</span></label>
+              <select name="exp_year" id="expYear" required><option value="">YYYY</option></select>
+            </div>
+            <div class="co-field"><label>CVV <span class="req">*</span></label><input type="text" name="cvv" placeholder="&bull;&bull;&bull;" inputmode="numeric" maxlength="4" required /></div>
+          </div>
+
+          <div class="co-secrow">
+            <span class="sb">&#128737;&#65039; <b>PCI DSS Level 1</b></span>
+            <span class="sb">&#128272; <b>AES-256</b> Encrypted</span>
+            <span class="sb">&#127974; <b>Bank-Grade</b> Security</span>
+          </div>
+          <p class="co-secnote">Secure payment powered by Authorize.Net. Your information is protected, tokenized and encrypted &mdash; we never store your full card number.</p>
+        </div>
+
+        <!-- Agreements -->
+        <div class="co-card">
+          <div class="co-card-h">
+            <span class="ic">&#128203;</span>
+            <h3>Review &amp; Accept Your Agreements</h3>
+          </div>
+          <p class="co-secnote" style="margin-top:0">Please read and confirm each item before completing your enrollment.</p>
+
+          <label class="co-agree">
+            <input type="checkbox" name="agree_terms" required />
+            <span class="box"></span>
+            <span class="txt">I accept the <a href="/service-agreement" target="_blank">Service Agreement</a> and understand the credit repair process. <span class="req">*</span></span>
+          </label>
+          <label class="co-agree">
+            <input type="checkbox" name="agree_privacy" required />
+            <span class="box"></span>
+            <span class="txt">I accept the <a href="/privacy" target="_blank">Privacy Policy</a> and consent to data processing. <span class="req">*</span></span>
+          </label>
+          <label class="co-agree">
+            <input type="checkbox" name="agree_marketing" />
+            <span class="box"></span>
+            <span class="txt">I'd like to receive financial tips and exclusive Prestige member offers.</span>
+          </label>
+        </div>
+
+        <p class="co-legal" id="legalText"></p>
+      </div>
+
+      <!-- RIGHT: summary -->
+      <aside class="co-summary">
+        <div class="sum-card">
+          <div class="sum-top">
+            <span class="sum-plan-tag" id="sumTag">Plan</span>
+            <h2 id="sumName">Plan</h2>
+            <p id="sumDesc">Plan description.</p>
+          </div>
+          <ul class="sum-feat" id="sumFeat"></ul>
+          <div class="sum-price">
+            <div class="sum-line"><span id="sumPlanLabel">Program fee</span><span class="strike" id="sumWas">$0</span></div>
+            <div class="sum-line"><span>Setup fee</span><span class="free">FREE</span></div>
+            <div class="sum-total">
+              <span class="lbl">Program Total<span class="save" id="sumSave">Save $0</span></span>
+              <span class="amt" id="sumPrice">$0</span>
+            </div>
+            <p class="sum-fineprint" id="sumFine">One-time program fee.</p>
+          </div>
+          <div class="sum-cta">
+            <div class="pay-error" id="payError" role="alert"></div>
+            <button type="submit" class="btn btn-gold" id="payBtn">&#128274;&nbsp; Complete Secure Checkout</button>
+            <div class="sum-trust">
+              <i>&#128274; SSL Secured</i> | <i>&#128737;&#65039; PCI Compliant</i> | <i>&#10003; Authorize.Net</i>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </form>
+  </div>
+</section>
+
+<!-- ===== SUCCESS ===== -->
+<div class="co-success" id="coSuccess">
+  <div class="box">
+    <div class="seal">&#10003;</div>
+    <h2>Welcome to <span class="gold-text">Prestige</span></h2>
+    <p id="successMsg">Your enrollment is confirmed. A welcome email with your agreement and portal access is on its way.</p>
+    <a href="/" class="btn btn-gold">Return Home</a>
+  </div>
+</div>
+
+<script>
+/* ---------- Plan data (mirrors the site's pricing section) ---------- */
+var PLANS = {
+  standard: {
+    tag: 'Standard Plan',
+    name: 'Standard Plan',
+    desc: 'Credit Repair Essentials — a single flat program fee. A focused 3-bureau clean-up for people with a few negative accounts.',
+    inherit: null,
+    features: [
+      '3-bureau dispute strategy',
+      'Negative item review & challenge',
+      'Collections assistance',
+      'Inquiry removal strategy',
+      'Score improvement roadmap',
+      'Monthly progress updates',
+      'Client portal access'
+    ],
+    price: 497,
+    was: 694,
+    label: 'Standard program fee',
+    fine: 'One-time program fee · monthly progress updates included.'
+  },
+  fasttrack: {
+    tag: 'Fast Track Plan',
+    name: 'Fast Track Plan',
+    desc: 'For clients who want faster results and funding preparation. Everything in Standard, accelerated.',
+    inherit: 'Everything in Standard, plus:',
+    features: [
+      'Priority dispute processing',
+      'Accelerated dispute cycles',
+      'Late payment challenges',
+      'Charge-off strategy',
+      'Debt validation letters',
+      'Credit utilization optimization',
+      'Funding readiness review'
+    ],
+    price: 797,
+    was: 994,
+    label: 'Fast Track program fee',
+    fine: 'One-time program fee · priority processing included.'
+  },
+  vip: {
+    tag: 'VIP Credit Rebuild',
+    name: 'VIP Credit Rebuild',
+    desc: 'For serious clients preparing for a home, vehicle, or business funding. Fully done-for-you, white-glove case management.',
+    inherit: 'Everything in Fast Track, plus:',
+    features: [
+      'Dedicated account specialist',
+      'Done-for-you case management',
+      'Unlimited support during program',
+      'Funding strategy consultation',
+      'Tradeline & utilization review',
+      'Mortgage & business funding prep',
+      'Priority communication'
+    ],
+    price: 997,
+    was: 1194,
+    label: 'VIP program fee',
+    fine: 'One-time program fee · dedicated specialist included.'
+  }
+};
+
+function getParam(n){ return new URLSearchParams(window.location.search).get(n); }
+function money(n){ return '$' + n.toLocaleString('en-US'); }
+
+var key = (getParam('plan') || 'standard').toLowerCase();
+if(!PLANS[key]) key = 'standard';
+var P = PLANS[key];
+
+document.getElementById('sumTag').textContent = P.tag;
+document.getElementById('sumName').textContent = P.name;
+document.getElementById('sumDesc').textContent = P.desc;
+document.getElementById('planEyebrow').textContent = 'Secure Enrollment · ' + P.tag;
+document.getElementById('sumWas').textContent = money(P.was);
+document.getElementById('sumPrice').textContent = money(P.price);
+document.getElementById('sumSave').textContent = 'Save ' + money(P.was - P.price);
+document.getElementById('sumPlanLabel').textContent = P.label;
+document.getElementById('sumFine').textContent = P.fine;
+document.title = 'Secure Checkout · ' + P.name + ' — Prestige Financial Concierge';
+
+var featHtml = '';
+if(P.inherit){ featHtml += '<li class="inherit">' + P.inherit + '</li>'; }
+P.features.forEach(function(f){
+  featHtml += '<li><span class="ck">&#10003;</span>' + f + '</li>';
+});
+document.getElementById('sumFeat').innerHTML = featHtml;
+
+document.getElementById('legalText').innerHTML =
+  '<b>Compliance Notice.</b> Prestige Financial Concierge is a credit repair organization as defined under the Credit Repair Organizations Act (CROA), 15 U.S.C. § 1679 et seq. In full compliance with CROA, no fees are collected until after the contracted services have been performed. You have the right to dispute inaccurate information in your credit file yourself at no cost, and to cancel your contract within three business days. A confirmation email and written agreement are sent immediately after enrollment.';
+
+/* expiry years */
+var yearSel = document.getElementById('expYear');
+var baseYear = 2026;
+for(var y = baseYear; y <= baseYear + 11; y++){
+  var o = document.createElement('option'); o.textContent = y; yearSel.appendChild(o);
+}
+
+/* card number grouping */
+var card = document.getElementById('cardNumber');
+card.addEventListener('input', function(){
+  var v = card.value.replace(/\D/g,'').slice(0,16);
+  card.value = v.replace(/(.{4})/g,'$1 ').trim();
+});
+
+/* ---------- Authorize.Net Accept.js (card data is tokenized in-browser) ----------
+   Accept.js is loaded up-front in <head>, so window.Accept is ready early. We
+   only fetch the public keys here (needed to tokenize), and we keep the pay
+   button DISABLED until both the keys and window.Accept exist — so a click can
+   never happen before payment is ready. No "still initializing" for the user. */
+var ANET = { apiLoginID:null, clientKey:null };
+
+var payBtn   = document.getElementById('payBtn');
+var payError = document.getElementById('payError');
+function showPayError(msg){ payError.textContent = msg; payError.classList.add('show'); }
+function clearPayError(){ payError.textContent = ''; payError.classList.remove('show'); }
+function paymentReady(){ return !!(window.Accept && ANET.apiLoginID && ANET.clientKey); }
+function refreshPayBtn(){
+  if(paymentReady()){
+    payBtn.disabled = false;
+    payBtn.innerHTML = '&#128274;&nbsp; Complete Secure Checkout';
+  } else {
+    payBtn.disabled = true;
+    payBtn.innerHTML = '&#9203;&nbsp; Loading secure payment&hellip;';
+  }
+}
+function setProcessing(on){
+  if(on){ payBtn.disabled = true; payBtn.innerHTML = '&#9203;&nbsp; Processing&hellip;'; }
+  else { refreshPayBtn(); }
+}
+refreshPayBtn();
+
+/* Fetch the public keys needed for tokenization, then re-evaluate readiness. */
+fetch('/api/checkout/config').then(function(r){return r.json();}).then(function(c){
+  ANET.apiLoginID = c.apiLoginID; ANET.clientKey = c.clientKey;
+  refreshPayBtn();
+}).catch(function(){});
+
+/* Deferred Accept.js may finish after this script runs — poll briefly until
+   window.Accept exists, then enable the button. */
+var acceptWait = setInterval(function(){
+  if(window.Accept){ clearInterval(acceptWait); refreshPayBtn(); }
+}, 200);
+
+document.getElementById('coForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  clearPayError();
+  if(!this.checkValidity()){ this.reportValidity(); return; }
+  var f = this;
+  function val(n){ var el = f.querySelector('[name="'+n+'"]'); return el ? el.value : ''; }
+  function chk(n){ var el = f.querySelector('[name="'+n+'"]'); return el ? el.checked : false; }
+
+  if(!paymentReady()){
+    showPayError('Secure payment is still loading — one moment...');
+    refreshPayBtn();
+    return;
+  }
+
+  setProcessing(true);
+
+  // 1) Tokenize the card with Accept.js — the raw card number/CVV never leave the browser.
+  var secureData = {
+    authData: { clientKey: ANET.clientKey, apiLoginID: ANET.apiLoginID },
+    cardData: {
+      cardNumber: val('cardnumber').replace(/\D/g,''),
+      month:      val('exp_month'),
+      year:       (val('exp_year') || '').slice(-2),
+      cardCode:   val('cvv'),
+      zip:        val('zip'),
+      fullName:   val('cardname')
+    }
+  };
+
+  Accept.dispatchData(secureData, function(resp){
+    if(resp.messages.resultCode === 'Error'){
+      var m = (resp.messages.message && resp.messages.message[0]) ? resp.messages.message[0].text : 'Please check your card details and try again.';
+      setProcessing(false);
+      showPayError(m);
+      return;
+    }
+
+    // 2) Send only the opaque token + billing details to our server to complete the charge.
+    fetch('/api/checkout/pay', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        opaqueDataDescriptor: resp.opaqueData.dataDescriptor,
+        opaqueDataValue:      resp.opaqueData.dataValue,
+        plan:    key,
+        first:   val('first'),   last:  val('last'),  email: val('email'), phone: val('phone'),
+        address: val('address'), city:  val('city'),  state: val('state'), zip:   val('zip'),
+        agree_terms: chk('agree_terms'), agree_privacy: chk('agree_privacy'), agree_marketing: chk('agree_marketing')
+      })
+    })
+    .then(function(r){ return r.json().then(function(j){ return j; }).catch(function(){ return {ok:false}; }); })
+    .then(function(res){
+      if(res && res.ok){
+        document.getElementById('successMsg').innerHTML =
+          'Your enrollment in the <b>' + P.name + '</b> is confirmed and your payment was <b>approved</b>. A welcome email with your written agreement and secure portal access is on its way.';
+        document.getElementById('coSuccess').classList.add('show');
+        window.scrollTo({top:0, behavior:'smooth'});
+      } else {
+        setProcessing(false);
+        showPayError((res && res.error) ? res.error : 'Your payment could not be processed. Please try again.');
+      }
+    })
+    .catch(function(){ setProcessing(false); showPayError('A network error occurred. Please try again.'); });
+  });
+});
+</script>
+<script src="assets/galaxy.js"></script>
+<script src="assets/cursor.js"></script>
+
+</body>
+</html>

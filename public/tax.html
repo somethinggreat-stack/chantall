@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tax Preparation & Planning — Prestige Financial Concierge Services</title>
+<meta name="description" content="Premium personal & business tax preparation, proactive tax planning, and reduction strategies from Prestige Financial Concierge Services. Keep more of what you earn." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<!-- ============ PREMIUM POPUP ============ -->
+<div class="pop-overlay" id="popOverlay" aria-hidden="true">
+  <div class="popup" role="dialog" aria-modal="true" aria-label="VIP welcome offer">
+    <button class="pop-close" id="popClose" aria-label="Close">&#10005;</button>
+    <div class="pop-img">
+      <img src="assets/founder-standing.jpeg" alt="Prestige Financial Concierge" />
+      <span class="pi-badge">&#9670; By Invitation</span>
+    </div>
+    <div class="pop-body">
+      <span class="pop-kicker">VIP Welcome Offer</span>
+      <h3>Your <span class="gold-text">Complimentary</span> Strategy Session</h3>
+      <p class="pop-offer">A $250 private consultation &mdash; on the house.</p>
+      <p class="pp">Map your credit, taxes, funding &amp; wealth goals with a dedicated concierge. No pressure &mdash; just a clear plan built around you.</p>
+      <form class="pop-form" onsubmit="return popSubmit(event)">
+        <div class="pf-grid">
+          <input type="text" name="name" required placeholder="Full name" />
+          <input type="tel" name="phone" required placeholder="Phone number" />
+        </div>
+        <input type="email" name="email" required placeholder="Email address" />
+        <span class="pop-chip-label">I'm interested in <em>(select all that apply)</em></span>
+        <div class="pop-chips" id="popChips">
+          <button type="button" class="pchip">Credit Repair</button>
+          <button type="button" class="pchip">Tax Preparation</button>
+          <button type="button" class="pchip">Business Funding</button>
+          <button type="button" class="pchip">Business Credit</button>
+          <button type="button" class="pchip">Tradelines</button>
+          <button type="button" class="pchip">Mortgage Ready</button>
+          <button type="button" class="pchip">Wealth Building</button>
+          <button type="button" class="pchip">Other</button>
+        </div>
+        <input type="hidden" name="interests" id="popInterests" />
+        <button type="submit" class="btn btn-gold">Claim My Session &rarr;</button>
+      </form>
+      <p class="pop-fine">&#128274; <b>Limited spots</b>&nbsp;&middot; 100% private</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="brand">
+      <img src="assets/logo.jpg" alt="Prestige Financial Concierge" />
+    </a>
+    <nav>
+      <ul>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/tax">Tax</a></li>
+        <li><a href="/funding">Funding</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://calendly.com/bellachon-cb/30min" target="_blank" rel="noopener" class="btn btn-gold">Book Consultation</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="closeMenu" aria-label="Close menu">&#10005;</button>
+  <a href="/#about">About</a>
+  <a href="/#pricing">Pricing</a>
+  <a href="/tax">Tax</a>
+  <a href="/funding">Funding</a>
+  <a href="/contact">Contact</a>
+  <a href="https://calendly.com/bellachon-cb/30min" target="_blank" rel="noopener" class="btn btn-gold">Book Consultation</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="subhero">
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <div class="subhero-copy">
+      <p class="crumbs"><a href="/">Home</a> &nbsp;/&nbsp; Tax Services</p>
+      <span class="eyebrow" style="margin-top:1rem;display:inline-block">Tax Preparation &amp; Planning</span>
+      <h1>Keep More of <span class="gold-text">What You Earn</span></h1>
+      <p class="lede">Accurate, optimized filing for individuals and businesses &mdash; paired with proactive, year-round planning that legally lowers what you owe. No surprises, no overpaying.</p>
+      <div class="hero-actions">
+        <a href="#get-started" class="btn btn-gold">Get a Tax Review &rarr;</a>
+        <a href="#included" class="btn btn-ghost">What's Included</a>
+      </div>
+    </div>
+    <div class="subhero-photo">
+      <div class="ring"></div>
+      <div class="frame"><img src="assets/founder-seated.jpeg" alt="Prestige tax concierge" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEAD FORM ============ -->
+<section class="sec" id="get-started">
+  <div class="wrap" style="max-width:780px">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Get Started</span>
+      <div class="sec-divider"><span>&#9670;</span></div>
+      <h2>Request Your Free <span class="gold-text">Tax Review</span></h2>
+      <p>Tell us about your situation and a dedicated concierge will reach out with a clear plan to lower your tax bill &mdash; no pressure, no obligation.</p>
+    </div>
+    <form class="form reveal" onsubmit="return submitForm(event,'/api/leads/tax')">
+      <div class="row">
+        <div class="field"><label>Your Name</label><input type="text" name="name" required placeholder="Full name" /></div>
+        <div class="field"><label>Email Address</label><input type="email" name="email" required placeholder="Email Address" /></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Phone Number (Optional)</label><input type="tel" name="phone" placeholder="Phone number" /></div>
+        <div class="field">
+          <label>I Need Help With</label>
+          <select name="service">
+            <option value="" disabled selected>Select a service</option>
+            <option>Personal Tax Preparation</option>
+            <option>Business Tax Preparation</option>
+            <option>Tax Planning &amp; Reduction</option>
+            <option>Back Taxes / Prior Years</option>
+            <option>Full Concierge Package</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label>Your Message</label><textarea name="message" placeholder="Tell us about your tax situation"></textarea></div>
+      <label class="form-agree">
+        <input type="checkbox" required />
+        <span>I accept the <a href="/privacy">Privacy Policy</a> and consent to be contacted.</span>
+      </label>
+      <button type="submit" class="btn btn-gold">Request My Free Review &rarr;</button>
+      <p class="note">&#128274; Your information is private &amp; confidential.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ INTRO / FEATURES ============ -->
+<section class="sec services" id="included">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">What's Included</span>
+      <div class="sec-divider"><span>&#9670;</span></div>
+      <h2>Full-Service <span class="gold-text">Tax Solutions</span></h2>
+      <p>From a single return to a complete tax strategy &mdash; handled end to end by your dedicated concierge.</p>
+    </div>
+    <div class="panel-grid cols3">
+      <div class="svc2 reveal"><div class="ic">&#9638;</div><h3>Personal Tax Preparation</h3><p>Precise, fully optimized individual returns filed accurately and on time, every season.</p></div>
+      <div class="svc2 reveal"><div class="ic">&#11041;</div><h3>Business Tax Preparation</h3><p>LLC, S-Corp, sole-proprietor &amp; partnership filings handled with care and compliance.</p></div>
+      <div class="svc2 reveal"><div class="ic">&#9671;</div><h3>Tax Planning &amp; Reduction</h3><p>Proactive, year-round strategy that legally minimizes your liability before filing day.</p></div>
+      <div class="svc2 reveal"><div class="ic">&#9635;</div><h3>Deduction &amp; Credit Review</h3><p>We hunt down every deduction and credit your old preparer may have missed.</p></div>
+      <div class="svc2 reveal"><div class="ic">&#10070;</div><h3>Quarterly Estimates</h3><p>Stay ahead of estimated payments and avoid penalties with a clear quarterly plan.</p></div>
+      <div class="svc2 reveal"><div class="ic">&#9733;</div><h3>Audit-Ready Records</h3><p>Clean, organized documentation and guidance so you're confident if questions arise.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="sec process">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">How It Works</span>
+      <div class="sec-divider"><span>&#9670;</span></div>
+      <h2>A <span class="gold-text">stress-free</span> tax experience</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="no gold-text">01</div><h3>Discovery</h3><p>We review last year's returns and your current situation to spot opportunities.</p></div>
+      <div class="step reveal"><div class="no gold-text">02</div><h3>Strategy</h3><p>Your concierge builds a tailored plan to reduce liability and stay compliant.</p></div>
+      <div class="step reveal"><div class="no gold-text">03</div><h3>Preparation</h3><p>We prepare and double-check every form, maximizing deductions and credits.</p></div>
+      <div class="step reveal"><div class="no gold-text">04</div><h3>File &amp; Plan Ahead</h3><p>We file, then set you up for next year with proactive, ongoing planning.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="sec why">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Why Prestige</span>
+      <div class="sec-divider"><span>&#9670;</span></div>
+      <h2>More than a <span class="gold-text">tax preparer</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="value reveal"><div class="ic">&#128176;</div><h3>Maximized Savings</h3><p>We find deductions and strategies most preparers overlook &mdash; you keep more.</p></div>
+      <div class="value reveal"><div class="ic">&#128197;</div><h3>Year-Round Planning</h3><p>Not just April. We manage your tax position proactively all year long.</p></div>
+      <div class="value reveal"><div class="ic">&#129309;</div><h3>One Coordinated Team</h3><p>Your taxes, credit, and funding work together as one smart plan.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec process">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Questions</span>
+      <div class="sec-divider"><span>&#9670;</span></div>
+      <h2>Tax <span class="gold-text">FAQs</span></h2>
+    </div>
+    <div class="faq reveal">
+      <details open><summary>Do you handle both personal and business taxes? <span class="pl">+</span></summary><p>Yes. We prepare individual returns as well as LLC, S-Corp, partnership, and self-employed filings &mdash; all under one roof.</p></details>
+      <details><summary>Can you help me lower what I owe? <span class="pl">+</span></summary><p>Absolutely. Tax reduction is our specialty. We build a proactive, fully legal strategy around your income, business structure, and goals.</p></details>
+      <details><summary>What if I'm behind on filing? <span class="pl">+</span></summary><p>We help clients get caught up on prior-year returns and back into good standing &mdash; discreetly and without judgment.</p></details>
+      <details><summary>How do I get started? <span class="pl">+</span></summary><p>Book your free consultation. We'll review your situation, recommend the right package, and map out your plan.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo.jpg" alt="Prestige logo" />
+        <p>Prestige Financial Concierge Services &mdash; luxury financial solutions, personalized service, and exceptional results, all under one roof.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/#services">Credit Restoration</a></li>
+          <li><a href="/#services">Business Credit</a></li>
+          <li><a href="/tax">Tax Strategy</a></li>
+          <li><a href="/funding">Business Funding</a></li>
+          <li><a href="/#services">Wealth Building</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#about">About Us</a></li>
+          <li><a href="/#process">Our Process</a></li>
+          <li><a href="/#why">Why Prestige</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/disclaimer">Disclaimer</a></li>
+          <li><a href="/service-agreement">Service Agreement</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; <span id="year"></span> Prestige Financial Concierge Services. All rights reserved.</p>
+      <div class="socials">
+        <a href="#" class="soc ig" aria-label="Instagram"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07c-1.27.06-2.15.26-2.91.56-.79.31-1.46.72-2.12 1.38C1.35 2.67.94 3.34.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.72 1.47 1.38 2.13.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.8-.31 1.47-.72 2.13-1.38.66-.66 1.07-1.33 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.12A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0m0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84M12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4m6.41-10.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44"/></svg></a>
+        <a href="#" class="soc fb" aria-label="Facebook"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6.02 4.39 11.01 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8v8.44C19.61 23.08 24 18.09 24 12.07"/></svg></a>
+        <a href="#" class="soc li" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13M7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0"/></svg></a>
+        <a href="#" class="soc em" aria-label="Email"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M22 4H2a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h20a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1m-1.4 2L12 11.69 3.4 6h17.2M3 18V7.27l8.47 5.6a1 1 0 0 0 1.06 0L21 7.27V18H3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);});
+  var mm=document.getElementById('mobileMenu');
+  document.getElementById('menuBtn').onclick=function(){mm.classList.add('open');};
+  document.getElementById('closeMenu').onclick=function(){mm.classList.remove('open');};
+  mm.querySelectorAll('a').forEach(function(a){a.onclick=function(){mm.classList.remove('open');};});
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=((i%3)*0.08)+'s';io.observe(el);});
+  document.getElementById('year').textContent=new Date().getFullYear();
+  function submitForm(e,endpoint){
+    e.preventDefault();
+    var f=e.target;
+    function val(n){var el=f.querySelector('[name="'+n+'"]');return el?el.value:'';}
+    var data={name:val('name'),email:val('email'),phone:val('phone'),service:val('service'),message:val('message')};
+    try{fetch(endpoint||'/api/leads/tax',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});}catch(err){}
+    var btn=f.querySelector('button[type=submit]');
+    var orig=btn.innerHTML;
+    btn.textContent='✓ Request Received — We\'ll Be In Touch';btn.style.opacity=.85;
+    f.reset();
+    setTimeout(function(){btn.innerHTML=orig;btn.style.opacity=1;},3500);
+    return false;
+  }
+
+  // premium popup
+  (function(){
+    var ov=document.getElementById('popOverlay');
+    if(!ov) return;
+    function openPop(){ov.classList.add('show');ov.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+    function closePop(){ov.classList.remove('show');ov.setAttribute('aria-hidden','true');document.body.style.overflow='';
+      try{sessionStorage.setItem('pfc_popup_closed','1');}catch(err){}}
+    var filled=false;try{filled=localStorage.getItem('pfc_lead_filled')==='1';}catch(err){}
+    try{var nav=performance.getEntriesByType('navigation')[0];
+      var isReload=nav?nav.type==='reload':(performance.navigation&&performance.navigation.type===1);
+      if(isReload){sessionStorage.removeItem('pfc_popup_closed');}}catch(err){}
+    var closed=false;try{closed=sessionStorage.getItem('pfc_popup_closed')==='1';}catch(err){}
+    if(!filled&&!closed){setTimeout(openPop,3000);}
+    document.getElementById('popClose').onclick=closePop;
+    ov.addEventListener('click',function(e){if(e.target===ov)closePop();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show'))closePop();});
+    var chips=document.querySelectorAll('#popChips .pchip');
+    var hidden=document.getElementById('popInterests');
+    function syncChips(){var p=[];chips.forEach(function(c){if(c.classList.contains('on'))p.push(c.textContent.trim());});hidden.value=p.join(', ');}
+    chips.forEach(function(c){c.addEventListener('click',function(){c.classList.toggle('on');syncChips();});});
+    window.popSubmit=function(e){
+      e.preventDefault();
+      var f=e.target;
+      function val(s){var el=f.querySelector(s);return el?el.value:'';}
+      var data={name:val('input[name=name]'),phone:val('input[name=phone]'),email:val('input[name=email]'),interests:hidden.value,source:'Welcome Popup (Tax Page)'};
+      if(!data.interests){alert('Please select at least one service you\'re interested in.');return false;}
+      try{fetch('/api/leads/popup',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});}catch(err){}
+      try{localStorage.setItem('pfc_lead_filled','1');}catch(err){}
+      var b=f.querySelector('button[type=submit]');
+      b.innerHTML='✓ You\'re In — Check Your Email';b.style.opacity=.85;
+      setTimeout(function(){closePop();location.hash='#get-started';},1400);
+      return false;
+    };
+  })();
+</script>
+<script src="assets/galaxy.js"></script>
+<script src="assets/cursor.js"></script>
+</body>
+</html>

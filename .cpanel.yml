@@ -1,0 +1,36 @@
+---
+deployment:
+  tasks:
+    # Live document root for this cPanel account (Laravel project root).
+    # The .htaccess in this folder forwards requests into public/.
+    - export DEPLOYPATH=/home/prestig5/public_html/
+
+    # Sync the repository into the live site.
+    #   -a            preserve perms/times, recurse
+    #   --delete not used on purpose: server-only assets (vendor/, .env,
+    #                node_modules/, storage runtime) must survive a deploy.
+    # The excludes below are protected from being overwritten AND, because
+    # they are not present in the git clone, are simply left untouched.
+    - >-
+      /usr/bin/rsync -a
+      --exclude='.git'
+      --exclude='.github'
+      --exclude='.gitignore'
+      --exclude='.gitattributes'
+      --exclude='.cpanel.yml'
+      --exclude='node_modules'
+      --exclude='vendor'
+      --exclude='.env'
+      --exclude='.env.example'
+      --exclude='storage/app/*'
+      --exclude='storage/logs/*'
+      --exclude='storage/framework/cache/*'
+      --exclude='storage/framework/sessions/*'
+      --exclude='storage/framework/views/*'
+      ./ $DEPLOYPATH
+
+    # Drop stale compiled config/route/event caches so Laravel re-reads the
+    # freshly deployed files and the current .env on the next request.
+    - /bin/rm -f $DEPLOYPATH/bootstrap/cache/config.php
+    - /bin/rm -f $DEPLOYPATH/bootstrap/cache/routes-v7.php
+    - /bin/rm -f $DEPLOYPATH/bootstrap/cache/events.php
