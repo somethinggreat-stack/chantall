@@ -17,13 +17,9 @@ class PaymentController extends Controller
      * the amount — we look it up here by the plan key it sends.
      */
     private const PLANS = [
-        'standard'  => ['name' => 'Standard Plan',       'amount' => 497.00],
-        'fasttrack' => ['name' => 'Fast Track Plan',     'amount' => 797.00],
-        'vip'       => ['name' => 'VIP Credit Rebuild',  'amount' => 997.00],
-        // Internal $5 live-transaction test. Not linked anywhere on the site;
-        // reachable only via /test-checkout.html. Flows through the exact same
-        // charge → enrollment → payment → webhook → dashboard pipeline.
-        'test'      => ['name' => 'Test Product ($5)',   'amount' => 5.00],
+        'standard'  => ['name' => 'Standard Plan',       'amount' => 997.00],
+        'fasttrack' => ['name' => 'Fast Track Plan',     'amount' => 1297.00],
+        'vip'       => ['name' => 'VIP Credit Rebuild',  'amount' => 1497.00],
     ];
 
     private function isProduction(): bool
