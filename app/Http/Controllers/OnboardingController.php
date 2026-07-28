@@ -18,7 +18,7 @@ class OnboardingController extends Controller
     private const FILE_RULES = ['file', 'mimes:pdf,jpg,jpeg,png,webp', 'max:10240'];
 
     /** Document fields, in the order Apex expects them. */
-    private const DOC_FIELDS = self::DOC_FIELDS;
+    private const DOC_FIELDS = ['drivers_license', 'ssn_card', 'proof_of_address'];
 
     private const ALLOWED_EXT = ['pdf', 'jpg', 'jpeg', 'png', 'webp'];
 
