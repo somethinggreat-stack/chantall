@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -16,6 +17,13 @@ class OnboardingController extends Controller
     /** Allowed upload extensions / max size (KB) — mirrors Apex's rules. */
     private const FILE_RULES = ['file', 'mimes:pdf,jpg,jpeg,png,webp', 'max:10240'];
 
+    /** Document fields, in the order Apex expects them. */
+    private const DOC_FIELDS = self::DOC_FIELDS;
+
+    private const ALLOWED_EXT = ['pdf', 'jpg', 'jpeg', 'png', 'webp'];
+
+    private const MAX_BYTES = 10 * 1024 * 1024;
+
     /**
      * Receive the onboarding form, then forward it server-to-server to Apex so
      * the client is created in their dashboard. The X-Intake-Key never leaves
@@ -25,12 +33,29 @@ class OnboardingController extends Controller
     {
         $ref = strtoupper(Str::random(8));
 
+        // Some hosts' WAF (mod_security) rejects multipart file uploads with a
+        // 406 before PHP ever runs, so the browser may instead send the three
+        // documents base64-encoded inside a JSON body. Turn those back into
+        // real uploads so everything below is identical for both transports.
+        $temp = $this->hydrateBase64Documents($request, $ref);
+
+        try {
+            return $this->forward($request, $ref);
+        } finally {
+            foreach ($temp as $path) {
+                @unlink($path);
+            }
+        }
+    }
+
+    private function forward(Request $request, string $ref)
+    {
         Log::info('[onboarding] === submit received ===', [
             'ref'   => $ref,
             'ip'    => $request->ip(),
             'email' => $request->input('email'),
             'name'  => trim($request->input('first_name', '') . ' ' . $request->input('last_name', '')),
-            'files' => array_values(array_filter(['drivers_license', 'ssn_card', 'proof_of_address'], fn ($f) => $request->hasFile($f))),
+            'files' => array_values(array_filter(self::DOC_FIELDS, fn ($f) => $request->hasFile($f))),
         ]);
 
         // ---- Confirm the intake key is configured on the server ----
@@ -79,7 +104,7 @@ class OnboardingController extends Controller
 
         // ---- Attach files & forward to Apex ----
         $req = Http::withHeaders(['X-Intake-Key' => $key])->timeout(60);
-        foreach (['drivers_license', 'ssn_card', 'proof_of_address'] as $f) {
+        foreach (self::DOC_FIELDS as $f) {
             if ($request->hasFile($f)) {
                 $file = $request->file($f);
                 $req = $req->attach($f, fopen($file->getRealPath(), 'r'), $file->getClientOriginalName());
@@ -114,6 +139,56 @@ class OnboardingController extends Controller
 
         // ---- Anything else ----
         Log::warning('[onboarding] Apex returned an unexpected status', ['ref' => $ref, 'status' => $res->status()]);
-        return response()->json(['ok' => false, 'message' => data_get($json, 'message', 'Submission failed. Please try again.')], 502);
+        return response()->json([
+            'ok'      => false,
+            'message' => data_get($json, 'message', 'The intake service returned an error (' . $res->status() . '). Please try again or contact support.'),
+        ], 502);
+    }
+
+    /**
+     * Convert `<field>_b64` JSON payloads ({name, data}) into real UploadedFile
+     * instances on the request. Returns the temp paths so they can be cleaned
+     * up once the request has been forwarded.
+     *
+     * @return string[]
+     */
+    private function hydrateBase64Documents(Request $request, string $ref): array
+    {
+        $temp = [];
+
+        foreach (self::DOC_FIELDS as $field) {
+            $doc = $request->input($field . '_b64');
+
+            if (! is_array($doc) || ! is_string($doc['data'] ?? null) || $doc['data'] === '') {
+                continue;
+            }
+
+            $name = (string) ($doc['name'] ?? $field);
+            $ext  = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+
+            // Accept a bare payload or a data: URI, and reject anything that
+            // isn't valid base64 before it can reach the filesystem.
+            $data = $doc['data'];
+            if (str_contains($data, ',') && str_starts_with($data, 'data:')) {
+                $data = substr($data, strpos($data, ',') + 1);
+            }
+            $binary = base64_decode(strtr($data, '-_', '+/'), true);
+
+            if ($binary === false || $binary === '' || ! in_array($ext, self::ALLOWED_EXT, true) || strlen($binary) > self::MAX_BYTES) {
+                Log::warning('[onboarding] rejected base64 document', [
+                    'ref' => $ref, 'field' => $field, 'ext' => $ext, 'bytes' => $binary === false ? 0 : strlen($binary),
+                ]);
+                continue;
+            }
+
+            $path = tempnam(sys_get_temp_dir(), 'ob_');
+            file_put_contents($path, $binary);
+            $temp[] = $path;
+
+            $request->files->set($field, new UploadedFile($path, $name, null, null, true));
+            $request->request->remove($field . '_b64');
+        }
+
+        return $temp;
     }
 }

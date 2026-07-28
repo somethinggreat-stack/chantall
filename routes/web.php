@@ -10,6 +10,7 @@ $pages = [
     'funding',
     'contact',
     'checkout',
+    'onboarding',
     'terms',
     'privacy',
     'disclaimer',

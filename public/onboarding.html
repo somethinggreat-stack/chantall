@@ -385,14 +385,68 @@
     try{ window.scrollTo({top:0, behavior:'smooth'}); }catch(e){}
   }
 
+  var DOC_FIELDS = ['drivers_license','proof_of_address','ssn_card'];
+
+  /* Read one file as base64. Photos straight off a phone are 3-5 MB each and
+     three of them will not survive the upload, so images are re-encoded down
+     to 1800px / JPEG before sending. PDFs are sent untouched. */
+  function readAsBase64(file){
+    return new Promise(function(resolve, reject){
+      var isImg = /^image\//.test(file.type) && !/hei[cf]/i.test(file.type);
+      if(!isImg || file.size < 900*1024) return resolve(rawBase64(file, reject));
+
+      var url = URL.createObjectURL(file), img = new Image();
+      img.onload = function(){
+        URL.revokeObjectURL(url);
+        var max = 1800, w = img.width, h = img.height;
+        var s = Math.min(1, max/Math.max(w,h));
+        var c = document.createElement('canvas');
+        c.width = Math.round(w*s); c.height = Math.round(h*s);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        try{
+          var d = c.toDataURL('image/jpeg', 0.82);
+          resolve({ name: file.name.replace(/\.[^.]+$/,'') + '.jpg', data: d.slice(d.indexOf(',')+1) });
+        }catch(err){ resolve(rawBase64(file, reject)); }
+      };
+      img.onerror = function(){ URL.revokeObjectURL(url); resolve(rawBase64(file, reject)); };
+      img.src = url;
+    });
+  }
+
+  function rawBase64(file, reject){
+    return new Promise(function(resolve){
+      var fr = new FileReader();
+      fr.onload = function(){ var d = String(fr.result); resolve({ name:file.name, data: d.slice(d.indexOf(',')+1) }); };
+      fr.onerror = function(){ reject(new Error('read')); };
+      fr.readAsDataURL(file);
+    });
+  }
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     clearBanner();
     if(!validateAll()) return;
     setSubmitting(true);
 
-    var fd = new FormData(form);
-    fetch('/api/onboarding/submit', { method:'POST', body: fd, headers:{ 'Accept':'application/json' } })
+    /* Text fields go in a plain JSON body and each document rides along as
+       base64. Multipart uploads are rejected by the host firewall (406). */
+    var payload = {};
+    new FormData(form).forEach(function(v, k){ if(!(v instanceof File)) payload[k] = v; });
+
+    var jobs = DOC_FIELDS.map(function(name){
+      var el = fieldOf(name);
+      if(!el || !el.files || !el.files.length) return Promise.resolve(null);
+      return readAsBase64(el.files[0]).then(function(doc){ payload[name + '_b64'] = doc; });
+    });
+
+    Promise.all(jobs)
+      .then(function(){
+        return fetch('/api/onboarding/submit', {
+          method:'POST',
+          body: JSON.stringify(payload),
+          headers:{ 'Accept':'application/json', 'Content-Type':'application/json' }
+        });
+      })
       .then(function(r){ return r.json().then(function(j){ return {status:r.status, body:j}; }).catch(function(){ return {status:r.status, body:null}; }); })
       .then(function(res){
         var b = res.body || {};
@@ -412,9 +466,14 @@
         }
 
         setSubmitting(false);
-        showBanner((b && b.message) ? b.message : 'Submission failed. Please try again.');
+        if(b && b.message){ showBanner(b.message); return; }
+        if(res.status === 413 || res.status === 406){
+          showBanner('Your documents were rejected by the server (error ' + res.status + '). Please upload smaller files, or email them to us and we will finish your file manually.');
+          return;
+        }
+        showBanner('Submission failed (error ' + res.status + '). Please try again, or contact support with this code.');
       })
-      .catch(function(){ setSubmitting(false); showBanner('A network error occurred. Please try again.'); });
+      .catch(function(){ setSubmitting(false); showBanner('A network error occurred. Please check your connection and try again.'); });
   });
 })();
 </script>
