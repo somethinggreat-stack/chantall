@@ -102,17 +102,24 @@ class OnboardingController extends Controller
         ]);
         $payload['credit_monitoring_name'] = 'MyFreeScoreNow';
 
-        // ---- Attach files & forward to Apex ----
-        $req = Http::withHeaders(['X-Intake-Key' => $key])->timeout(60);
+        // ---- Attach documents as base64 & forward to Apex ----
+        // Apex's host firewall (mod_security) rejects multipart uploads with a
+        // 406 before PHP even runs, so documents are sent base64-encoded inside
+        // the JSON body instead. This is the transport Apex's intake API is
+        // built to accept (see IntakeController::decodeBase64Documents).
         foreach (self::DOC_FIELDS as $f) {
             if ($request->hasFile($f)) {
                 $file = $request->file($f);
-                $req = $req->attach($f, fopen($file->getRealPath(), 'r'), $file->getClientOriginalName());
+                $payload[$f . '_base64']   = base64_encode(file_get_contents($file->getRealPath()));
+                $payload[$f . '_filename'] = $file->getClientOriginalName();
             }
         }
 
         try {
-            $res = $req->post(self::APEX_ENDPOINT, $payload);
+            $res = Http::withHeaders(['X-Intake-Key' => $key])
+                ->timeout(60)
+                ->asJson()
+                ->post(self::APEX_ENDPOINT, $payload);
         } catch (\Throwable $e) {
             Log::error('[onboarding] could not reach Apex', ['ref' => $ref, 'message' => $e->getMessage()]);
             return response()->json(['ok' => false, 'message' => 'We could not reach the intake service. Please try again.'], 502);
