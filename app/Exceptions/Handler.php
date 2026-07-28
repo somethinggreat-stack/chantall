@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\PostTooLargeException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -43,6 +44,17 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        // Oversized uploads otherwise render an HTML error page, which the
+        // form's fetch() cannot parse — it then shows a meaningless message.
+        $this->renderable(function (PostTooLargeException $e, $request) {
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json([
+                    'ok'      => false,
+                    'message' => 'Your upload was too large for the server. Please send smaller documents (under 10 MB each).',
+                ], 413);
+            }
         });
     }
 }
