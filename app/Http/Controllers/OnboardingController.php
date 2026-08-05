@@ -11,8 +11,13 @@ use Illuminate\Validation\ValidationException;
 
 class OnboardingController extends Controller
 {
-    /** Apex Growth Solutions intake endpoint. */
-    private const APEX_ENDPOINT = 'https://apexgrowthsolution.com/api/intake';
+    /**
+     * Apex Growth Solutions intake endpoint. Uses the /partner-intake alias
+     * (not /api/intake) because Cloudflare/WAF managed rules commonly filter
+     * the /api/ path and return 403 to server-to-server callers. Same handler,
+     * same key, same payload — just a path the edge doesn't block.
+     */
+    private const APEX_ENDPOINT = 'https://apexgrowthsolution.com/partner-intake';
 
     /** Allowed upload extensions / max size (KB) — mirrors Apex's rules. */
     private const FILE_RULES = ['file', 'mimes:pdf,jpg,jpeg,png,webp', 'max:10240'];
@@ -116,7 +121,12 @@ class OnboardingController extends Controller
         }
 
         try {
-            $res = Http::withHeaders(['X-Intake-Key' => $key])
+            $res = Http::withHeaders([
+                    'X-Intake-Key' => $key,
+                    // A normal UA avoids blank/Guzzle-UA bot filtering at the edge.
+                    'User-Agent'   => 'PrestigeFunnel/1.0 (+https://prestigecreditconciergeservices.com)',
+                    'Accept'       => 'application/json',
+                ])
                 ->timeout(60)
                 ->asJson()
                 ->post(self::APEX_ENDPOINT, $payload);
